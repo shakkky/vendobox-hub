@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/vb-hub
   docker:
-    - image: circleci/node:12
+    - image: circleci/node:16
   resource_class: large
 
 version: 2.1
