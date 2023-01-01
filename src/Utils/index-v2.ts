@@ -1,5 +1,4 @@
-import 'moment-timezone';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { useRef, useEffect } from 'react';
 
 export const validateMutationFields = <T extends Record<string, unknown>>(
