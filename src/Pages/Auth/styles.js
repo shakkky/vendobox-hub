@@ -13,22 +13,29 @@ const Wrapper = styled.div`
   align-items: center;
 
   @media (max-width: 576px) {
-    max-width: 420px;
+    width: 90vw;
   }
 `;
 
 const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-
   padding: 24px;
+  width: 100%;
 
   border-radius: 12px;
 
   background: white;
-  box-shadow: -4px -4px 100px 10px rgba(0, 0, 0, 0.75%);
+  box-shadow: -4px -4px 100px 10px rgba(0, 0, 0, 0.1);
+
+  .section-form-input {
+    max-width: 100%;
+  }
+
+  @media (max-width: 576px) {
+    padding: unset;
+    box-shadow: none;
+  }
 `;
 
 // ${({ theme }) =>
@@ -68,21 +75,7 @@ const Error = styled.div`
   color: ${props => props.theme.colors.thunderbird};
 `;
 
-const SignUp = styled.div`
-  margin-top: 74px;
-  color: ${props => props.theme.colors.darkerBlue};
-  font-size: 18px;
-  padding-right: 2rem;
-
-  ${({ theme }) =>
-    theme.media.phone(`
-      margin-top: 20px;
-  `)} & > a {
-    margin-left: 5px;
-  }
-`;
-
-const SectionFormInput = props => <SFI width={360} {...props} />;
+const SectionFormInput = props => <SFI {...props} />;
 
 const Logo = () => <Icon type="logo" width={295} height={300} />;
 
@@ -115,7 +108,6 @@ export {
   Title,
   ButtonWrapper,
   Error,
-  SignUp,
   Icon,
   CompanyTitle,
   CompanyTitleWrapper,

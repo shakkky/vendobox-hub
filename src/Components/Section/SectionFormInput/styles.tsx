@@ -9,7 +9,7 @@ export const Wrapper = styled.div<{ width?: number; isCheckbox?: boolean }>`
   ${p =>
     p.width &&
     css`
-      width: ${p.width};
+      width: ${p.width}px;
     `}
 `;
 
