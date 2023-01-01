@@ -28,7 +28,7 @@ const FormWrapper = styled.form`
   border-radius: 12px;
 
   background: white;
-  box-shadow: -4px -4px 100px 10px rgba(0, 0, 0, 0.075);
+  box-shadow: -4px -4px 100px 10px rgba(0, 0, 0, 0.75%);
 `;
 
 // ${({ theme }) =>
