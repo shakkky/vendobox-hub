@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ~/se-portal
+  working_directory: ~/vb-hub
   docker:
     - image: circleci/node:12
   resource_class: large
@@ -132,7 +132,7 @@ jobs:
     environment:
       REACT_APP_STAGE: dev
       AWS_S3_BUCKET_NAME: dev-hub.vendobox.com.au
-      AWS_DISTRIBUTION_ID: E18ISK4FBHRBCH
+      AWS_DISTRIBUTION_ID: E2LW5VTVHS1HJA
     docker:
       - image: circleci/python:2.7-jessie
     working_directory: ~/vb-hub
@@ -154,7 +154,7 @@ jobs:
     environment:
       REACT_APP_STAGE: production
       AWS_S3_BUCKET_NAME: hub.vendobox.com.au
-      AWS_DISTRIBUTION_ID: E27LMA6F2O2Q4I
+      AWS_DISTRIBUTION_ID: E30T5KFMVI3JWO
     docker:
       - image: circleci/python:2.7-jessie
     working_directory: ~/vb-hub
