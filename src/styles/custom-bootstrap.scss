@@ -1,0 +1,126 @@
+// @see ../../node_modules/bootstrap/scss/_variables.scss
+@font-face {
+  font-family: 'Avenir-Roman';
+  src: url('./fonts/Avenir-Roman.woff2') format('woff2'),
+    url('./fonts/Avenir-Roman.woff') format('woff'),
+    url('./fonts/Avenir-Roman.ttf') format('truetype'),
+    url('./fonts/Avenir-Roman.svg#Avenir-Roman') format('svg'),
+    url('./fonts/Avenir-Roman.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  letter-spacing: 0.1px;
+}
+
+@font-face {
+  font-family: 'Avenir-Medium';
+  src: url('./fonts/Avenir-Medium.woff2') format('woff2'),
+    url('./fonts/Avenir-Medium.woff') format('woff'),
+    url('./fonts/Avenir-Medium.ttf') format('truetype'),
+    url('./fonts/Avenir-Medium.svg#Avenir-Medium') format('svg'),
+    url('./fonts/Avenir-Medium.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir-Heavy';
+  src: url('./fonts/Avenir-Heavy.woff2') format('woff2'),
+    url('./fonts/Avenir-Heavy.woff') format('woff'),
+    url('./fonts/Avenir-Heavy.ttf') format('truetype'),
+    url('./fonts/Avenir-Heavy.svg#Avenir-Heavy') format('svg'),
+    url('./fonts/Avenir-Heavy.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Your variable overrides
+$font-family-sans-serif: Avenir-Roman, apple-system, BlinkMacSystemFont,
+  'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
+$body-bg: #fff;
+$body-color: #111;
+$font-size-base: 1rem;
+$font-size-lg: ($font-size-base * 1.2) !default; // 16 * 1.2 = 19.2
+$font-size-md: ($font-size-base * 0.85) !default; // 16 * 0.85 = 13.6
+$font-size-sm: ($font-size-base * 0.65) !default; // 16 * 0.75 = 10.4
+
+// colors
+$primary: #017bfe;
+$secondary: #7f8fa4;
+$danger: #ff0000;
+
+// buttons
+$btn-line-height-sm: 13px;
+$btn-border-radius-sm: 13px;
+$btn-line-height: 22px;
+$btn-border-radius: 8px;
+$btn-line-height-lg: 32px;
+$btn-border-radius-lg: 32px;
+
+// Badges
+$badge-font-size: 10px;
+$badge-font-weight: 100;
+$badge-padding-y: 5px;
+$badge-padding-x: 18px;
+$badge-border-radius: 2px;
+$badge-pill-padding-x: 0.6em !default;
+$badge-pill-border-radius: 10rem !default;
+
+// Modal
+$modal-backdrop-opacity: 0.7 !default;
+
+// Import bootstrap theme
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+$primary-color: $primary;
+@import '../../node_modules/loaders.css/src/animations/line-scale.scss';
+
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+  color: $primary;
+}
+
+// Update bootstrap default button font-family
+.btn {
+  font-family: Avenir-Heavy, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+}
+
+header.pushed-down {
+  top: 40px;
+
+  ~ div > div > div {
+    padding-top: 2.6rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    top: 110px;
+
+    ~ .content-wrapper {
+      margin-top: 130px;
+    }
+  }
+}
+
+header.pushed-down-double {
+  top: 80px;
+
+  ~ div > div > div {
+    padding-top: 5.2rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    top: 220px;
+
+    ~ .content-wrapper {
+      margin-top: 260px;
+    }
+  }
+}

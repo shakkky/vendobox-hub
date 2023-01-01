@@ -1,0 +1,25 @@
+{
+  "processors": [
+    "stylelint-processor-styled-components"
+  ],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components"
+  ],
+  "rules": {
+    "declaration-colon-newline-after": null,
+    "rule-empty-line-before": null,
+    "at-rule-empty-line-before": null,
+    "declaration-empty-line-before": null,
+    "comment-empty-line-before": null,
+    "declaration-block-semicolon-newline-after": null,
+    "color-function-notation": null,
+    "string-quotes": "single",
+    "value-keyword-case": null,
+    "shorthand-property-no-redundant-values": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "string-no-newline": null,
+    "selector-class-pattern": null
+  }
+}

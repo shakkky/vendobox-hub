@@ -1,0 +1,24 @@
+*.d.ts text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.lock text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.env text eol=lf
+*.env.sample text eol=lf
+*.eslintrc text eol=lf
+*.gitattributes text eol=lf
+*.gitignore text eol=lf
+*.prettierrc text eol=lf
+*.sentryclirc text eol=lf
+CODEOWNERS text eol=lf
+Dockerfile text eol=lf
+Makefile text eol=lf
+Makefile text eol=lf
+*.snap linguist-generated
+src/schema/* linguist-generated
+utils/graphql-schema.json linguist-generated

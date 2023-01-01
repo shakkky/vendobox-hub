@@ -1,0 +1,163 @@
+# lint-disable invalid-graphql-schema
+scalar DateTimeDeprecated
+# Please use DateTime instead as it uses correct ISO date string
+scalar DateTime
+scalar IntID
+
+directive @serviceOnly on FIELD_DEFINITION
+
+type Query {
+  healthz: String
+
+  # Resumes
+  resumes: PaginatedResume
+  resume(id: IntID!): Resume
+
+  # Download Requests
+  downloadRequests: PaginatedDownloadRequest
+  downloadRequestByDownloadHash(download_hash: String!): DownloadRequest
+  downloadRequest(hash: String!): DownloadRequest
+
+  # Users
+  me: User
+  users: PaginatedUser
+  user(id: IntID!): User
+}
+
+type Mutation {
+  contactMe(details: ContactMeInput!): Boolean
+
+  # Resumes
+  uploadResume(params: IUploadResumeInput!): Resume
+
+  # Download Requests
+  createDownloadRequest(params: CreateDownloadRequestInput!): DownloadRequest
+  approveDownloadRequest(params: ApproveDownloadRequestInput!): DownloadRequest
+  revokeDownloadApproval(params: RevokeDownloadApprovalInput!): DownloadRequest
+
+  # Users
+  login(credentials: CredentialsInput!): AuthenticatedUser
+  deleteUser(id: IntID): User
+}
+
+##### Types #####
+type Resume {
+  id: IntID!
+  url: String!
+  version: Int!
+  title: String!
+  created_at: DateTime
+  updated_at: DateTime
+  other_prop: String
+}
+
+type PaginatedResume {
+  resumes: [Resume]!
+  count: Int!
+}
+
+type DownloadRequest {
+  id: IntID!
+  name: String!
+  email: String!
+  hash: String!
+  download_hash: String!
+  is_download_approved: Boolean
+  has_accepted_terms_and_conditions: Boolean
+  comments: String
+  resume_id: IntID
+  resume_version: Int
+  created_at: DateTime
+  updated_at: DateTime
+  other_prop: String
+  download_link: String
+  resume: Resume
+}
+
+type PaginatedDownloadRequest {
+  downloadRequests: [DownloadRequest]!
+  count: Int!
+}
+
+type AuthenticatedUser {
+  id: IntID!
+  first_name: String
+  last_name: String
+  email: String
+  phone: String
+  photo: String
+  role: UserRole
+  created_at: DateTimeDeprecated
+  updated_at: DateTimeDeprecated
+  apiToken: String!
+  status: String
+}
+
+type User {
+  id: IntID!
+  first_name: String
+  last_name: String
+  full_name: String
+  email: String
+  phone: String
+  photo: String
+  role: UserRole
+  status: UserStatus
+  is_deleted: Boolean
+  created_at: DateTimeDeprecated
+  updated_at: DateTimeDeprecated
+}
+
+type UserRole {
+  code: String
+  label: String
+  inputKey: String
+  inputType: String
+}
+
+type UserStatus {
+  code: Int
+  label: String
+}
+
+type PaginatedUser {
+  users: [User]!
+  count: Int!
+}
+
+##### Inputs #####
+input ContactMeInput {
+  name: String!
+  email: String!
+  message: String!
+}
+
+input IUploadResumeInput {
+  url: String
+  version: Int
+  uuid: String!
+  title: String!
+  file_type: String!
+}
+
+input CreateDownloadRequestInput {
+  name: String!
+  email: String!
+  comments: String
+  has_accepted_terms_and_conditions: Boolean
+}
+
+input ApproveDownloadRequestInput {
+  download_request_id: IntID!
+  resume_id: IntID!
+  resume_version: Int!
+}
+
+input RevokeDownloadApprovalInput {
+  download_request_id: IntID!
+}
+
+input CredentialsInput {
+  email: String!
+  password: String!
+}
