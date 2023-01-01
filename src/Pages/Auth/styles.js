@@ -26,6 +26,8 @@ const FormWrapper = styled.form`
   border-radius: 12px;
 
   background: white;
+
+  /* stylelint-disable-next-line alpha-value-notation */
   box-shadow: -4px -4px 100px 10px rgba(0, 0, 0, 0.1);
 
   .section-form-input {
