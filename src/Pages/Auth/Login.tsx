@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import styled from 'styled-components';
 import { useLocation, useHistory } from 'react-router-dom';
-import { gql, useMutation, ApolloError } from '@apollo/client';
+import { useMutation, ApolloError } from '@apollo/client';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import qs from 'qs';
@@ -9,52 +8,30 @@ import qs from 'qs';
 import config from 'config';
 import { useNotification } from 'HOC';
 import { formatErrors } from 'AppGraphQL';
-import { Indicator as Loader } from 'Components';
+
+import { Icon, Button } from 'Components';
+import { Input } from 'Components/Form';
+import { SectionFormInput } from 'Components/Section';
+
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { Grid } from '@mui/material';
+
 import {
-  InputAdornment,
-  SectionFormInput,
-  Wrapper,
+  PageWrapper,
   ButtonWrapper,
   Error,
-  Title,
+  Header,
+  ExtraLargeText,
+  LargeText,
   FormWrapper,
-  Icon,
-  Input,
-  Button,
-  Container,
-  Row,
-  Col,
-  CompanyTitle,
-  CompanyTitleWrapper,
   PanelWrapper,
+  StyledLoader,
 } from './styles';
-import { login, loginVariables } from 'schema/login';
 
-const validationSchema = yup.object().shape({
-  email: yup.string().trim().email().required('Email is required'),
-  password: yup.string().required('Password field is required'),
-});
+import { login, loginVariables } from 'schema/login';
+import { LOGIN_MUTATION } from './queries';
 
 const isDev = config.stage === 'development';
-const LOGIN_MUTATION = gql`
-  mutation login($credentials: CredentialsInput!) {
-    authUser: login(credentials: $credentials) {
-      id
-      first_name
-      last_name
-      email
-      role {
-        code
-        label
-      }
-      photo
-      phone
-      created_at
-      updated_at
-      apiToken
-    }
-  }
-`;
 
 const Login = () => {
   const location = useLocation();
@@ -93,7 +70,10 @@ const Login = () => {
   const { values, errors, handleSubmit, setFieldValue } = useFormik({
     initialValues,
     validateOnChange: false,
-    validationSchema,
+    validationSchema: yup.object().shape({
+      email: yup.string().trim().email().required('Email is required'),
+      password: yup.string().required('Password field is required'),
+    }),
     onSubmit: async (vals, { setStatus }) => {
       clearPageAlert();
       const { data, errors } = await mutate({
@@ -129,76 +109,69 @@ const Login = () => {
     },
   });
   return (
-    <Wrapper>
-      <Container>
-        <Row>
-          <Col sm={12} md={6}>
-            <PanelWrapper>
-              <CompanyTitleWrapper>
-                <CompanyTitle>vendobox</CompanyTitle>
-                <CompanyTitle color="#4a4a4a"> hub</CompanyTitle>
-              </CompanyTitleWrapper>
-              <Title>the home of all things vendobox</Title>
-            </PanelWrapper>
-          </Col>
-          <Col sm={12} md={6}>
-            <FormWrapper>
-              <SectionFormInput>
-                <Input
-                  border="#dfe2e5"
-                  type="text"
-                  id="username"
-                  placeholder="Email Address"
-                  onChange={e => setFieldValue('email', e.target.value)}
-                  value={values.email}
-                  error={!!errors.email}
-                  errorMessage={errors.email}
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <Icon type="user" color="primary" />
-                    </InputAdornment>
-                  }
-                />
-              </SectionFormInput>
-              <SectionFormInput>
-                <Input
-                  border="#dfe2e5"
-                  name="password"
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  onKeyDown={e => e.key === 'Enter' && handleSubmit()}
-                  onChange={e => setFieldValue('password', e.target.value)}
-                  value={values.password}
-                  error={!!errors.password}
-                  errorMessage={errors.password}
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <Icon type="lock" color="primary" />
-                    </InputAdornment>
-                  }
-                />
-              </SectionFormInput>
-              {errMsg && <Error>{errMsg}</Error>}
-              <ButtonWrapper>
-                <Button
-                  label="Log In"
-                  disabled={submitting}
-                  onClick={handleSubmit}
-                />
-                {submitting && <StyledLoader size={0.75} />}
-              </ButtonWrapper>
-            </FormWrapper>
-          </Col>
-        </Row>
-      </Container>
-    </Wrapper>
+    <PageWrapper>
+      <Grid container direction="row" spacing={2} columns={10}>
+        <Grid item xs={10} sm={10} md={5}>
+          <PanelWrapper>
+            <Header>
+              <ExtraLargeText>vendobox</ExtraLargeText>
+              <ExtraLargeText color="#4a4a4a"> hub</ExtraLargeText>
+            </Header>
+            <LargeText>the home of all things vendobox</LargeText>
+          </PanelWrapper>
+        </Grid>
+        <Grid item xs={10} sm={10} md={5}>
+          <FormWrapper>
+            <SectionFormInput>
+              <Input
+                border="#dfe2e5"
+                type="text"
+                id="username"
+                placeholder="Email Address"
+                onChange={e => setFieldValue('email', e.target.value)}
+                value={values.email}
+                error={!!errors.email}
+                errorMessage={errors.email}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <Icon type="user" color="primary" />
+                  </InputAdornment>
+                }
+              />
+            </SectionFormInput>
+            <SectionFormInput>
+              <Input
+                border="#dfe2e5"
+                name="password"
+                id="password"
+                type="password"
+                placeholder="Password"
+                onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+                onChange={e => setFieldValue('password', e.target.value)}
+                value={values.password}
+                error={!!errors.password}
+                errorMessage={errors.password}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <Icon type="lock" color="primary" />
+                  </InputAdornment>
+                }
+              />
+            </SectionFormInput>
+            {errMsg && <Error>{errMsg}</Error>}
+            <ButtonWrapper>
+              <Button
+                label="Log In"
+                disabled={submitting}
+                onClick={handleSubmit}
+              />
+              {submitting && <StyledLoader size={0.75} />}
+            </ButtonWrapper>
+          </FormWrapper>
+        </Grid>
+      </Grid>
+    </PageWrapper>
   );
 };
 
 export default Login;
-
-const StyledLoader = styled(Loader)`
-  margin-left: 8px;
-  height: 38px;
-`;
