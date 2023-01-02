@@ -184,9 +184,6 @@ const Icon = ({ type, ...rest }) => {
     case 'circular-loader':
       return <CircularProgress {...rest} />;
 
-    case 'warning':
-      return <WarningRounded {...rest} />;
-
     case 'update':
       return <Update {...rest} />;
 
