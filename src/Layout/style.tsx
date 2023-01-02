@@ -35,6 +35,7 @@ const DrawerWrapper = styled.div`
   min-height: 94vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: ${props => props.theme.colors.white};
 
   @media (max-width: ${props => props.theme.breakpoints.phone}px) {
@@ -45,9 +46,6 @@ const DrawerWrapper = styled.div`
 `;
 
 const DrawerMenuContent = styled.div`
-  padding-bottom: 54px;
-  min-height: calc(100vh - 125px);
-  position: relative;
   outline: none !important;
 `;
 
@@ -90,9 +88,9 @@ const HeaderNavWrapper = styled.div`
 const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 10px;
-  border-bottom: 1px solid ${props => props.theme.colors.lightGrey};
-  border-right: 1px solid ${props => props.theme.colors.lightGrey};
+  padding: 20px;
+  align-items: center;
+  margin: auto;
 
   @media (max-width: ${props => props.theme.breakpoints.phone}px) {
     margin-bottom: 10px;
@@ -100,25 +98,22 @@ const LogoWrapper = styled.div`
 `;
 
 const LogoCopy = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   padding: 10px;
 
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: ${props => props.theme.colors.jade};
 `;
 
 const Content = styled.main`
   padding-left: 17rem;
-  padding-top: 2rem;
-  padding-right 2rem;
+  padding-right 0.5rem;
+  padding-top: 0.5rem;
   @media (max-width: 1440px) {
-    padding-left: 12rem;
+    padding-left: 13rem;
   }
   flex-grow: 1;
-  margin-top: ${props => props.theme.toolbarHeight}px;
-  min-height: calc(100vh - ${props => props.theme.toolbarHeight}px);
+  min-height: 100vh;
 
   background-color: ${props => props.theme.colors.offWhite};
 

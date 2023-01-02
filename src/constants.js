@@ -4,7 +4,7 @@ const MAX_IMAGE_SIZE_10MB = 15000000; // 15mb
 
 const USER_TYPES = {
   ADMIN: 'ADMIN',
-  OPERATOR: 'OP',
+  OP: 'OP',
 };
 
 const USER_TYPE_TITLES = {

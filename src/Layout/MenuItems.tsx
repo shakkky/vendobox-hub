@@ -11,6 +11,8 @@ import {
 } from './style';
 import Icon from '../Components/Icon';
 
+import UserDetails from './UserDetails';
+
 import items, { MenuItem } from './menus';
 import { login_authUser } from 'schema/login';
 
@@ -74,30 +76,34 @@ const MenuItems = ({
   );
   return (
     <DrawerWrapper>
-      <LogoWrapper className={toolbarClass}>
-        <Icon type="logo" />
-        <LogoCopy>ShakeelEngineering</LogoCopy>
-      </LogoWrapper>
-      <MenuList>
-        <DrawerMenuContent>
-          {items.map((menuItem, k) => (
-            <Fragment key={k}>
-              <FullMenuItem
-                key={k}
-                menuItem={menuItem}
-                menuItemClick={menuItemClick}
-                selected={isSelected(menuItem)}
-              />
-            </Fragment>
-          ))}
+      <div>
+        <LogoWrapper className={toolbarClass}>
+          <Icon type="logo" size="md" />
+          <LogoCopy>vendobox</LogoCopy>
+        </LogoWrapper>
+        <MenuList>
+          <DrawerMenuContent>
+            {items.map((menuItem, k) => (
+              <Fragment key={k}>
+                <FullMenuItem
+                  key={k}
+                  menuItem={menuItem}
+                  menuItemClick={menuItemClick}
+                  selected={isSelected(menuItem)}
+                />
+              </Fragment>
+            ))}
+          </DrawerMenuContent>
+        </MenuList>
+      </div>
 
-          {userSession && (
-            <StyledMenuItem onClick={handleLogout}>
-              <Icon type="agents" /> Logout
-            </StyledMenuItem>
-          )}
-        </DrawerMenuContent>
-      </MenuList>
+      <UserDetails
+        userFirstName={userSession?.first_name}
+        userLastName={userSession?.last_name}
+        userPhoto={userSession?.photo}
+        userRole={userSession?.role?.label}
+        handleLogout={handleLogout}
+      />
     </DrawerWrapper>
   );
 };

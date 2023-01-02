@@ -27,7 +27,7 @@ const colors = {
   turquoise: '#56BECA',
   lightPurple: '#7A89C2',
   /** Badge grey / secondary btn */
-  regentGrey: '#7F8FA4',
+  regentGrey: '#727272',
 
   betaGrey: '#5C6A81',
   /** button / badge */
@@ -63,6 +63,7 @@ const colors = {
   disabledGrey: '#c3c3c3',
 
   offWhite: '#EEF0F4',
+  offBlack: '#2E2E2E',
 
   success: '#C6CA53',
 };

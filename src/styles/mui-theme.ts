@@ -89,14 +89,20 @@ const muiTheme: ThemeOptions = {
         color: colors.regentGrey,
         fontSize: '14px',
         height: '30px',
+        borderRadius: '4px',
         '&$selected': {
           fontWeight: '900',
-          color: colors.darkGrey,
+          color: colors.white,
           cursor: 'default',
+          backgroundColor: colors.offBlack,
         },
         '&:hover': {
           fontWeight: '900',
           color: colors.darkGrey,
+          '&$selected': {
+            color: colors.white,
+            backgroundColor: colors.offBlack,
+          },
         },
       },
     },

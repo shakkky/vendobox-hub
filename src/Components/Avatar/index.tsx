@@ -82,7 +82,7 @@ const Wrapper = styled.div<{ size: number; hasPhoto: boolean }>`
 
   border-radius: ${props => (props.size > 0 ? props.size / 2 : 0)}px;
   overflow: hidden;
-  background-color: ${({ theme, hasPhoto }) => !hasPhoto && theme.badge.white};
+  background-color: ${({ theme, hasPhoto }) => !hasPhoto && theme.badge.purple};
   margin-top: 2px;
   box-sizing: border-box;
 `;

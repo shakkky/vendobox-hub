@@ -43,6 +43,15 @@ import {
   WarningRounded,
 } from '@material-ui/icons';
 
+import {
+  BusinessRounded,
+  DashboardRounded,
+  Logout,
+  RouteRounded,
+  ThumbUpAltRounded,
+  WarningAmberRounded,
+} from '@mui/icons-material';
+
 import { CircularProgress } from '@material-ui/core';
 
 import { Agents, Arrow, Edit, Upload, Logo } from './CustomIcon';
@@ -70,6 +79,9 @@ const Icon = ({ type, ...rest }) => {
     case 'arrow-up':
       return <Arrow {...rest} type="up" />;
 
+    case 'business':
+      return <BusinessRounded {...rest} />;
+
     case 'close':
       return <Close {...rest} />;
 
@@ -78,6 +90,9 @@ const Icon = ({ type, ...rest }) => {
 
     case 'cog':
       return <Settings {...rest} />;
+
+    case 'dashboard':
+      return <DashboardRounded {...rest} />;
 
     case 'bust':
       return <PermIdentity {...rest} />;
@@ -151,6 +166,9 @@ const Icon = ({ type, ...rest }) => {
     case 'logo':
       return <Logo {...rest} />;
 
+    case 'logout':
+      return <Logout {...rest} />;
+
     case 'home':
       return <Home {...rest} />;
 
@@ -186,6 +204,15 @@ const Icon = ({ type, ...rest }) => {
 
     case 'disabled':
       return <NotInterested {...rest} />;
+
+    case 'route':
+      return <RouteRounded {...rest} />;
+
+    case 'thumb-up-rounded':
+      return <ThumbUpAltRounded {...rest} />;
+
+    case 'warning':
+      return <WarningAmberRounded {...rest} />;
 
     default:
       return null;

@@ -81,20 +81,12 @@ function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Helmet
-        titleTemplate="%s - Portal"
-        defaultTitle="Portal - Shakeel Engineering"
-      >
+      <Helmet titleTemplate="%s - Portal" defaultTitle="Hub | vendobox">
         <meta charSet="utf-8" />
       </Helmet>
       <CssBaseline />
       <LayoutWrapper>
-        <ToolbarWrapper
-          userFirstName={user?.first_name}
-          userLastName={user?.last_name}
-          userPhoto={user?.photo}
-          handleDrawerToggle={handleDrawerToggle}
-        />
+        <ToolbarWrapper handleDrawerToggle={handleDrawerToggle} />
         <Hidden mdUp>
           <Drawer
             variant="temporary"
