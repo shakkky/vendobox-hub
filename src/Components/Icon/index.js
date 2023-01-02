@@ -40,7 +40,6 @@ import {
   Settings,
   Update,
   Visibility,
-  WarningRounded,
 } from '@material-ui/icons';
 
 import {
