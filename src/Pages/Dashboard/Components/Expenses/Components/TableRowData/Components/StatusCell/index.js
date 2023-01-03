@@ -1,5 +1,4 @@
 import React from 'react';
-import Avatar from 'Components/Avatar';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -8,7 +7,7 @@ const Wrapper = styled.div`
 
 const StatusCell = ({ expense }) => {
   const { status } = expense ?? {};
-  const { code, label } = status;
+  const { label } = status;
   return <Wrapper>{label}</Wrapper>;
 };
 

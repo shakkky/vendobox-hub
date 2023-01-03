@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 `;
 
 const DetailsCell = ({ expense }) => {
-  const { title, paid_to } = expense;
+  const { title } = expense;
   return (
     <Wrapper>
       <div>{title}</div>

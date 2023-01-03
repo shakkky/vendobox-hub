@@ -1,5 +1,5 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+// import { gql, useQuery } from '@apollo/client';
 import PageHeader from 'Components/PageHeader';
 import { PageWrapper } from 'Components/Page';
 import Section, { SectionContainer } from 'Components/Section';
