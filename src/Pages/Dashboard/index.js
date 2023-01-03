@@ -13,6 +13,7 @@ import { Grid } from '@mui/material';
 
 import styled from 'styled-components';
 import FleetOverview from './Components/FleetOverview';
+import VisitGraph from './Components/VisitGraph';
 
 const CardContainer = styled.div`
   margin: 0 5px;
@@ -134,6 +135,15 @@ const Dashboard = () => {
     },
   ];
 
+  const visits = [
+    { date: '10th Feb', count: 30 },
+    { date: '11th Feb', count: 39 },
+    { date: '12th Feb', count: 18 },
+    { date: '13th Feb', count: 24 },
+    { date: '14th Feb', count: 35 },
+    { date: '15th Feb', count: 23 },
+  ];
+
   /**
    * This page should display:
    * - cards with revenue, expenses, etc
@@ -191,7 +201,14 @@ const Dashboard = () => {
 
         <Grid item xs={12} sm={7}>
           <PageHeader subHeading="Visits">
-            show a graph of visits over the last week
+            <VisitGraph visits={visits} />
+          </PageHeader>
+        </Grid>
+
+        <Grid item xs={12} sm={7}>
+          <PageHeader subHeading="Most popular products">
+            show a graph/leaderboard/pie chart(?) of the most popular products
+            we have sold over the last 7 days
           </PageHeader>
         </Grid>
       </Grid>

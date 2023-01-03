@@ -70,6 +70,7 @@
     "react-select": "5.2.2",
     "react-simple-oauth2-login": "^0.5.0",
     "reactstrap": "^6.3.1",
+    "recharts": "^2.2.0",
     "recompose": "^0.30.0",
     "rrweb": "0.9.14",
     "sass": "^1.50.1",
