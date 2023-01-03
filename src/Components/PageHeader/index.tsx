@@ -66,7 +66,7 @@ const PageHeader = ({
     {subHeading && (
       <Row>
         <Col md="9">
-          <SubHeading>
+          <SubHeading noPad={!title}>
             <SubHeadingWrapper>
               {subHeading}
               {subHeadingButton ?? undefined}
@@ -113,7 +113,7 @@ PageHeader.propTypes = {
 };
 
 PageHeader.defaultProps = {
-  title: 'Page title',
+  title: null,
   subHeading: null,
   badges: [],
   action: null,

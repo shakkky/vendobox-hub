@@ -68,9 +68,9 @@ type RowProps = {
 } & Partial<TableRowProps>;
 
 const TableRow = styled(MuiTableRow)<RowProps>`
-  &:nth-child(odd) {
-    background-color: ${props => props.theme.colors.alabaster};
-  }
+  // &:nth-child(odd) {
+  //   background-color: ${props => props.theme.colors.alabaster};
+  // }
 
   & > td {
     font-size: 14px;
@@ -79,6 +79,8 @@ const TableRow = styled(MuiTableRow)<RowProps>`
 
   height: ${p => (p.compact ? '20px' : '68px')} !important;
   max-height: ${p => (p.compact ? '20px' : '68px')} !important;
+
+  border-bottom: 1px solid lightgrey;
 
   ${({ compact }) => {
     if (compact) {
@@ -131,7 +133,7 @@ const Table = styled(MuiTable)`
   table-layout: auto;
   td:first-child,
   th:first-child {
-    padding-left: 54px !important;
+    padding-left: 0px !important;
   }
 `;
 

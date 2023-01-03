@@ -15,6 +15,8 @@ const PageHeaderWrapper = styled.div<{ subHeading?: unknown }>`
   button {
     outline: none;
   }
+
+  box-shadow: 1px 1px 2px #aaaaaa;
 `;
 
 const StatusWrapper = styled.div`
@@ -57,12 +59,12 @@ const TitleWrapper = styled.span`
   display: flex;
 `;
 
-const SubHeading = styled.div`
+const SubHeading = styled.div<{ noPad?: boolean }>`
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-  padding-top: 12px;
+  padding-top: ${p => (p.noPad ? '0px' : '12px')};
 `;
 
 const Children = styled(Row)`

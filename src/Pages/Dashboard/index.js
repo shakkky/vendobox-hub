@@ -12,9 +12,10 @@ import Card from './Components/Card';
 import { Grid } from '@mui/material';
 
 import styled from 'styled-components';
+import FleetOverview from './Components/FleetOverview';
 
 const CardContainer = styled.div`
-  margin: 30px 5px;
+  margin: 0px 5px;
 `;
 
 // const QUERY_DOWNLOAD_REQUESTS = gql`
@@ -79,26 +80,121 @@ const Dashboard = () => {
     },
   ];
 
+  const fleet = [
+    {
+      id: 1,
+      location: 'Douglass Partners',
+      address: '123 Example Street, Exampleville, 2000',
+      status: {
+        code: 10,
+        label: 'online',
+      },
+      warning: null,
+      operator: {
+        first_name: 'Mansoor',
+        last_name: 'Hussein',
+        photo: '',
+      },
+      revenue: 71288,
+      revenue_since_restock: 34255,
+    },
+    {
+      id: 2,
+      location: 'Storage King - Thornleigh',
+      address: '456 Example Street, Exampleville, 2000',
+      status: {
+        code: 10,
+        label: 'online',
+      },
+      warning: null,
+      operator: {
+        first_name: 'Sheena',
+        last_name: 'Raj',
+        photo: '',
+      },
+      revenue: 4510,
+      revenue_since_restock: 1325,
+    },
+    {
+      id: 3,
+      location: 'Jax Tyres - Baulkham Hills',
+      address: '789 Example Street, Exampleville, 2000',
+      status: {
+        code: 20,
+        label: 'offline',
+      },
+      warning: null,
+      operator: {
+        first_name: 'Jason',
+        last_name: 'Vithoulkas',
+        photo: '',
+      },
+      revenue: 23050,
+      revenue_since_restock: 6725,
+    },
+  ];
+
+  /**
+   * This page should display:
+   * - cards with revenue, expenses, etc
+   * - table with expenses over the last 7 days
+   * - table with current fleet status
+   */
+
   return (
     <PageWrapper title="Dashboard">
-      <PageHeader title="Dashboard" subHeading="Welcome, Shakeel!" />
-
-      <CardContainer>
-        <Grid container direction="row" spacing={3} columns={12}>
-          {cards?.map(card => (
-            <Grid item xs={6} sm={3} key={card.id}>
-              <Card
-                key={card.id}
-                header={card.header}
-                unit={card.unit}
-                value={card.value}
-                backgroundColor={card.backgroundColor}
-                masked={card.masked}
-              />
-            </Grid>
-          ))}
+      <Grid container spacing={2} columns={12}>
+        <Grid item xs={12}>
+          <PageHeader title="Dashboard" subHeading="Welcome, Shakeel!" />
         </Grid>
-      </CardContainer>
+
+        <Grid item xs={12}>
+          <CardContainer>
+            <Grid container direction="row" spacing={3} columns={12}>
+              {cards?.map(card => (
+                <Grid item xs={6} sm={3} key={card.id}>
+                  <Card
+                    key={card.id}
+                    header={card.header}
+                    unit={card.unit}
+                    value={card.value}
+                    backgroundColor={card.backgroundColor}
+                    masked={card.masked}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </CardContainer>
+        </Grid>
+
+        <Grid item xs={12} sm={7}>
+          <PageHeader subHeading="Fleet overview">
+            <FleetOverview fleet={fleet} />
+          </PageHeader>
+        </Grid>
+
+        <Grid item xs={12} sm={5}>
+          <PageHeader subHeading="Expenses">
+            when a new expense is added, it should render a row here. Should
+            this just be for the previous 7 days? or should this be for a
+            period. Meaning that we can easily see what has been paid for and
+            what hasnt
+          </PageHeader>
+        </Grid>
+
+        <Grid item xs={12} sm={5}>
+          <PageHeader subHeading="Top searches">
+            whenever someone types something into vendobox suggest, we display
+            it here
+          </PageHeader>
+        </Grid>
+
+        <Grid item xs={12} sm={7}>
+          <PageHeader subHeading="Visits">
+            show a graph of visits over the last week
+          </PageHeader>
+        </Grid>
+      </Grid>
 
       {/* <Section border={false}>
         <SectionContainer fullWidth>
