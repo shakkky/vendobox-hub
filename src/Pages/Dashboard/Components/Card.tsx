@@ -51,7 +51,7 @@ const Card = ({
     <Wrapper
       backgroundColor={backgroundColor}
       ref={hoverRef}
-      onClick={() => setCurrentlyMasked(!currentlyMasked)}
+      onClick={() => setCurrentlyMasked(maskedByDefault && !currentlyMasked)}
       role="button"
       tabIndex={-33}
     >
