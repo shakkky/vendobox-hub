@@ -5,10 +5,12 @@ import { RowLoader } from 'Components/Loader';
 import TableRowData from './Components/TableRowData';
 
 const FleetOverview = ({
-  fleet,
+  fleet = [],
   loading,
 }: {
-  fleet: any;
+  fleet: {
+    id: number;
+  }[]; // TODO: fix later
   loading?: boolean;
 }) => {
   return (
