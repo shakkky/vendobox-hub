@@ -67,11 +67,11 @@ type RowProps = {
   dimmed?: boolean;
 } & Partial<TableRowProps>;
 
-const TableRow = styled(MuiTableRow)<RowProps>`
-  // &:nth-child(odd) {
-  //   background-color: ${props => props.theme.colors.alabaster};
-  // }
+// &:nth-child(odd) {
+//   background-color: ${props => props.theme.colors.alabaster};
+// }
 
+const TableRow = styled(MuiTableRow)<RowProps>`
   & > td {
     font-size: 14px;
     color: ${props => props.theme.colors.black};

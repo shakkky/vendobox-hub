@@ -16,7 +16,7 @@ const PageHeaderWrapper = styled.div<{ subHeading?: unknown }>`
     outline: none;
   }
 
-  box-shadow: 1px 1px 2px #aaaaaa;
+  box-shadow: 1px 1px 2px #aaa;
 `;
 
 const StatusWrapper = styled.div`

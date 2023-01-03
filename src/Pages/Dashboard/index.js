@@ -15,7 +15,7 @@ import styled from 'styled-components';
 import FleetOverview from './Components/FleetOverview';
 
 const CardContainer = styled.div`
-  margin: 0px 5px;
+  margin: 0 5px;
 `;
 
 // const QUERY_DOWNLOAD_REQUESTS = gql`
