@@ -133,7 +133,7 @@ const Table = styled(MuiTable)`
   table-layout: auto;
   td:first-child,
   th:first-child {
-    padding-left: 0px !important;
+    padding-left: 0 !important;
   }
 `;
 
