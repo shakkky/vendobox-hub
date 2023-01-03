@@ -118,7 +118,7 @@ const Content = styled.main`
   background-color: ${props => props.theme.colors.offWhite};
 
   @media (max-width: 959px) {
-    padding-left: 2rem;
+    padding-left: 0.5rem;
   }
 `;
 
