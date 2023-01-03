@@ -42,25 +42,29 @@ const Rows = styled.div`
   align-items: center;
 `;
 
+type PayloadObject = {
+  chartType?: string;
+  color?: string;
+  dataKey?: string;
+  formatter?: unknown;
+  name?: string;
+  payload?: {
+    [key: string]: string | number;
+  };
+  points?: unknown;
+  stroke?: string;
+  strokeWidth?: number;
+  type?: unknown;
+  unit?: unknown;
+  value?: number;
+};
+
 const CustomTooltip = ({
   payload = [],
   xLabel,
   yLabel,
 }: {
-  payload?: {
-    chartType?: string;
-    color?: string;
-    dataKey?: string;
-    formatter?: unknown;
-    name?: string;
-    payload?: unknown;
-    points?: unknown;
-    stroke?: string;
-    strokeWidth?: number;
-    type?: unknown;
-    unit?: unknown;
-    value?: number;
-  }[];
+  payload?: PayloadObject[];
   xLabel?: string;
   yLabel?: string;
 }) => {
@@ -68,7 +72,7 @@ const CustomTooltip = ({
     <>
       {xLabel && yLabel && payload?.length > 0 && (
         <CustomTooltipWrapper>
-          {payload.map((p: any) => {
+          {payload.map((p: PayloadObject) => {
             return (
               <Rows key={p.value}>
                 <Indicator color={p.stroke} />
