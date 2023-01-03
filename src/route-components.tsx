@@ -21,3 +21,5 @@ const LoadComponent = (
 
 export const Login = LoadComponent(() => import('./Pages/Auth/Login'));
 export const NotFound = LoadComponent(() => import('./Pages/NotFound'));
+
+export const Dashboard = LoadComponent(() => import('./Pages/Dashboard'));

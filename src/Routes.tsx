@@ -14,7 +14,7 @@ import { APIErrorReset } from 'app-context';
 import { getUserSession } from './helper';
 import { withLayout } from './Layout';
 
-import { Login, NotFound } from './route-components';
+import { Login, NotFound, Dashboard } from './route-components';
 
 type Props = { [x: string]: unknown };
 
@@ -122,13 +122,9 @@ const Routes = () => (
       <Switch>
         <PublicLoggedOutRoute exact path="/login" component={Login} />
 
-        {/* <AuthRoute exact path="/" component={DownloadRequests} />
-        <AuthRoute
-          exact
-          path="/download-requests"
-          component={DownloadRequests}
-        />
-        <AuthRoute exact path="/resumes" component={Resumes} />
+        <AuthRoute exact path="/" component={Dashboard} />
+
+        {/* <AuthRoute exact path="/resumes" component={Resumes} />
         <AuthRoute exact path="/users" component={Users} /> */}
 
         <AuthRoute component={NotFound} />
