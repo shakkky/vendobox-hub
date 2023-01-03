@@ -99,7 +99,8 @@ const PageHeader = ({
 );
 
 PageHeader.propTypes = {
-  title: PropTypes.string.isRequired,
+  // title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   subHeading: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   badges: PropTypes.arrayOf(
     PropTypes.shape({

@@ -1,5 +1,6 @@
 import React from 'react';
 // import { gql, useQuery } from '@apollo/client';
+import { round } from 'lodash';
 import PageHeader from 'Components/PageHeader';
 import { PageWrapper } from 'Components/Page';
 // import Section, { SectionContainer } from 'Components/Section';
@@ -13,6 +14,7 @@ import { Grid } from '@mui/material';
 
 import styled from 'styled-components';
 import FleetOverview from './Components/FleetOverview';
+import Expenses from './Components/Expenses';
 import VisitGraph from './Components/VisitGraph';
 
 const CardContainer = styled.div`
@@ -51,7 +53,7 @@ const Dashboard = () => {
       id: 1,
       header: 'Weekly revenue',
       unit: '$',
-      value: 987.88,
+      value: round(98788, 2) / 100,
       backgroundColor: greenish,
       masked: true,
     },
@@ -59,7 +61,7 @@ const Dashboard = () => {
       id: 2,
       header: 'Expenses',
       unit: '$',
-      value: 142.35,
+      value: round(21710, 2) / 100,
       backgroundColor: redish,
       masked: true,
     },
@@ -144,6 +146,49 @@ const Dashboard = () => {
     { date: '15th Feb', count: 23 },
   ];
 
+  const expenses = [
+    {
+      id: 1,
+      title: 'One-off payment to operator',
+      paid_to: null,
+      status: {
+        code: 10,
+        label: 'paid',
+      },
+      cost_in_cents: 5780,
+    },
+    {
+      id: 2,
+      title: 'Purchased new stock',
+      paid_to: null,
+      status: {
+        code: 10,
+        label: 'paid',
+      },
+      cost_in_cents: 8430,
+    },
+    {
+      id: 3,
+      title: 'One-off payment to operator',
+      paid_to: null,
+      status: {
+        code: 10,
+        label: 'payment pending',
+      },
+      cost_in_cents: 2500,
+    },
+    {
+      id: 4,
+      title: 'One-off payment to operator',
+      paid_to: null,
+      status: {
+        code: 10,
+        label: 'payment pending',
+      },
+      cost_in_cents: 5000,
+    },
+  ];
+
   /**
    * This page should display:
    * - cards with revenue, expenses, etc
@@ -185,10 +230,13 @@ const Dashboard = () => {
 
         <Grid item xs={12} sm={5}>
           <PageHeader subHeading="Expenses">
-            when a new expense is added, it should render a row here. Should
-            this just be for the previous 7 days? or should this be for a
-            period. Meaning that we can easily see what has been paid for and
-            what hasnt
+            <Expenses expenses={expenses} />
+          </PageHeader>
+        </Grid>
+
+        <Grid item xs={12} sm={7}>
+          <PageHeader subHeading="Visits">
+            <VisitGraph visits={visits} />
           </PageHeader>
         </Grid>
 
@@ -199,13 +247,7 @@ const Dashboard = () => {
           </PageHeader>
         </Grid>
 
-        <Grid item xs={12} sm={7}>
-          <PageHeader subHeading="Visits">
-            <VisitGraph visits={visits} />
-          </PageHeader>
-        </Grid>
-
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} sm={5}>
           <PageHeader subHeading="Most popular products">
             show a graph/leaderboard/pie chart(?) of the most popular products
             we have sold over the last 7 days
