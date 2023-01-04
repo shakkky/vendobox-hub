@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TableRow, TableCell } from 'Components/Table';
 import styled from 'styled-components';
+import { queryLeads_leads_leads } from 'schema/queryLeads';
 
 const Wrapper = styled.div`
   font-size: 1rem;
@@ -9,23 +10,12 @@ const Wrapper = styled.div`
   color: ${p => p.theme.colors.offBlack};
 `;
 
-type Lead = {
-  id: number;
-  name: string;
-  phone: string;
-  email: string;
-  company_name: string;
-  est_traffic: string;
-  machine_type: string;
-  notes?: string | null;
-};
-
 /**
  * TODO: when a row is clicked, open a pop-over the displays more details
  * or maybe even a collapsable row
  */
 
-const TableRowBody = ({ lead }: { lead: Lead }) => {
+const TableRowBody = ({ lead }: { lead: queryLeads_leads_leads }) => {
   const { name, company_name, notes } = lead;
   return (
     <TableRow>
@@ -41,7 +31,7 @@ const TableRowBody = ({ lead }: { lead: Lead }) => {
       </TableCell>
       <TableCell>
         <Wrapper>
-          <div>{notes ?? '-'}</div>
+          <div>{!!notes ? notes : '-'}</div>
         </Wrapper>
       </TableCell>
     </TableRow>
