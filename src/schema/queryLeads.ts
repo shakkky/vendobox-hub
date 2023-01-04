@@ -17,6 +17,8 @@ export interface queryLeads_leads_leads {
   __typename: "Lead";
   id: any;
   name: string | null;
+  phone: string | null;
+  email: string | null;
   company_name: string | null;
   est_traffic: string | null;
   machine_type: string | null;

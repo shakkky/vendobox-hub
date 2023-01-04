@@ -17,6 +17,8 @@ const QUERY_LEADS = gql`
       leads {
         id
         name
+        phone
+        email
         company_name
         est_traffic
         machine_type

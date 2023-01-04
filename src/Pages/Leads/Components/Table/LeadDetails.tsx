@@ -3,6 +3,7 @@ import Divider from '@mui/material/Divider';
 import Table, { TableBody, TableRow, TableCell } from 'Components/Table';
 import { Button } from 'Components';
 
+import { formatDate } from 'Utils';
 import { queryLeads_leads_leads } from 'schema/queryLeads';
 
 const Wrapper = styled.div`
@@ -33,6 +34,8 @@ const ButtonWrapper = styled.div`
 const LeadDetails = ({ lead }: { lead: queryLeads_leads_leads }) => {
   const {
     name,
+    phone,
+    email,
     company_name,
     est_traffic,
     machine_type,
@@ -41,6 +44,10 @@ const LeadDetails = ({ lead }: { lead: queryLeads_leads_leads }) => {
     interaction_key,
     created_at,
   } = lead;
+
+  const createdAt = formatDate(created_at, {
+    format: 'DD/MM/YYYY hh:mm a',
+  });
   return (
     <Wrapper>
       <ButtonContainer>
@@ -61,6 +68,18 @@ const LeadDetails = ({ lead }: { lead: queryLeads_leads_leads }) => {
               <Header>Name</Header>
             </TableCell>
             <TableCell>{name}</TableCell>
+          </TableRow>
+          <TableRow compact noBorder>
+            <TableCell>
+              <Header>Phone</Header>
+            </TableCell>
+            <TableCell>{phone}</TableCell>
+          </TableRow>
+          <TableRow compact noBorder>
+            <TableCell>
+              <Header>Email</Header>
+            </TableCell>
+            <TableCell>{email}</TableCell>
           </TableRow>
           <TableRow compact noBorder>
             <TableCell>
@@ -96,7 +115,7 @@ const LeadDetails = ({ lead }: { lead: queryLeads_leads_leads }) => {
             <TableCell>
               <Header>Created</Header>
             </TableCell>
-            <TableCell>{created_at}</TableCell>
+            <TableCell>{createdAt}</TableCell>
           </TableRow>
           <TableRow compact noBorder>
             <TableCell>
