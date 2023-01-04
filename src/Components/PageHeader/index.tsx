@@ -66,7 +66,7 @@ const PageHeader = ({
     {subHeading && (
       <Row>
         <Col md="9">
-          <SubHeading noPad={!title}>
+          <SubHeading>
             <SubHeadingWrapper>
               {subHeading}
               {subHeadingButton ?? undefined}
@@ -99,8 +99,7 @@ const PageHeader = ({
 );
 
 PageHeader.propTypes = {
-  // title: PropTypes.string.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   subHeading: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   badges: PropTypes.arrayOf(
     PropTypes.shape({
@@ -114,7 +113,7 @@ PageHeader.propTypes = {
 };
 
 PageHeader.defaultProps = {
-  title: null,
+  title: '',
   subHeading: null,
   badges: [],
   action: null,

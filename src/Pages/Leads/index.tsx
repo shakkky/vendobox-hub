@@ -5,8 +5,9 @@ import { PageWrapper } from 'Components/Page';
 import Section, { SectionContainer } from 'Components/Section';
 import { RowLoader } from 'Components/Loader';
 import Table, { TableBody } from 'Components/Table';
-import TableRowData from './Components/TableRowData';
-import TableHeader from './Components/TableHeader';
+import TableRowData from './Components/Table/Row';
+import TableHeader from './Components/Table/Header';
+import { Grid } from '@mui/material';
 
 // const QUERY_DOWNLOAD_REQUESTS = gql`
 //   query queryDownloadRequests {
@@ -67,31 +68,33 @@ const Leads = () => {
   const loading = false;
   return (
     <PageWrapper title="Leads">
-      <PageHeader
-        title="Leads"
-        subHeading="from the website funnel, partners, etc"
-      />
+      <Grid container spacing={2} columns={12}>
+        <Grid item xs={12}>
+          <PageHeader
+            title="Leads"
+            subHeading="from the website funnel, partners, etc"
+          />
+        </Grid>
 
-      <Section border={false}>
-        <SectionContainer>
-          <Table>
-            <TableHeader />
-            {loading ? (
-              <RowLoader col={5} />
-            ) : (
-              <TableBody>
-                {leads?.map(lead => (
-                  <TableRowData
-                    key={lead.id}
-                    lead={lead}
-                    // refetch={refetch}
-                  />
-                ))}
-              </TableBody>
-            )}
-          </Table>
-        </SectionContainer>
-      </Section>
+        <Grid item xs={12}>
+          <Section border={false}>
+            <SectionContainer>
+              <Table>
+                <TableHeader />
+                {loading ? (
+                  <RowLoader col={5} />
+                ) : (
+                  <TableBody>
+                    {leads?.map(lead => (
+                      <TableRowData key={lead.id} lead={lead} />
+                    ))}
+                  </TableBody>
+                )}
+              </Table>
+            </SectionContainer>
+          </Section>
+        </Grid>
+      </Grid>
     </PageWrapper>
   );
 };

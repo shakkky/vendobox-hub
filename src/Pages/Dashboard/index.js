@@ -3,7 +3,7 @@ import React from 'react';
 import { round } from 'lodash';
 import PageHeader from 'Components/PageHeader';
 import { PageWrapper } from 'Components/Page';
-// import Section, { SectionContainer } from 'Components/Section';
+import Section, { SectionContainer } from 'Components/Section';
 // import { RowLoader } from 'Components/Loader';
 // import Table, { TableBody } from 'Components/Table';
 // import TableRowData from './Components/TableRowData';
@@ -138,12 +138,12 @@ const Dashboard = () => {
   ];
 
   const visits = [
-    { date: '10th Feb', count: 30 },
-    { date: '11th Feb', count: 39 },
-    { date: '12th Feb', count: 18 },
-    { date: '13th Feb', count: 24 },
-    { date: '14th Feb', count: 35 },
-    { date: '15th Feb', count: 23 },
+    { date: 'Feb 10', count: 30 },
+    { date: 'Feb 11', count: 39 },
+    { date: 'Feb 12', count: 18 },
+    { date: 'Feb 13', count: 24 },
+    { date: 'Feb 14', count: 35 },
+    { date: 'Feb 15', count: 23 },
   ];
 
   const expenses = [
@@ -223,35 +223,45 @@ const Dashboard = () => {
         </Grid>
 
         <Grid item xs={12} sm={7}>
-          <PageHeader subHeading="Fleet overview">
-            <FleetOverview fleet={fleet} />
-          </PageHeader>
+          <Section border={false} title="Fleet overview">
+            <SectionContainer>
+              <FleetOverview fleet={fleet} />
+            </SectionContainer>
+          </Section>
         </Grid>
 
         <Grid item xs={12} sm={5}>
-          <PageHeader subHeading="Expenses">
-            <Expenses expenses={expenses} />
-          </PageHeader>
+          <Section border={false} title="Expenses">
+            <SectionContainer>
+              <Expenses expenses={expenses} />
+            </SectionContainer>
+          </Section>
         </Grid>
 
         <Grid item xs={12} sm={7}>
-          <PageHeader subHeading="Visits">
-            <VisitGraph visits={visits} />
-          </PageHeader>
+          <Section border={false} title="Visits">
+            <SectionContainer>
+              <VisitGraph visits={visits} />
+            </SectionContainer>
+          </Section>
         </Grid>
 
         <Grid item xs={12} sm={5}>
-          <PageHeader subHeading="Top searches">
-            whenever someone types something into vendobox suggest, we display
-            it here
-          </PageHeader>
+          <Section border={false} title="Top searches">
+            <SectionContainer>
+              whenever someone types something into vendobox suggest, we display
+              it here
+            </SectionContainer>
+          </Section>
         </Grid>
 
         <Grid item xs={12} sm={5}>
-          <PageHeader subHeading="Most popular products">
-            show a graph/leaderboard/pie chart(?) of the most popular products
-            we have sold over the last 7 days
-          </PageHeader>
+          <Section border={false} title="Most popular products">
+            <SectionContainer>
+              show a graph/leaderboard/pie chart(?) of the most popular products
+              we have sold over the last 7 days
+            </SectionContainer>
+          </Section>
         </Grid>
       </Grid>
 

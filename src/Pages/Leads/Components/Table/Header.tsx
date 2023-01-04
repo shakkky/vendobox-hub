@@ -19,7 +19,7 @@ const TableHeader = () => {
           <TableHeaderLabel>Company</TableHeaderLabel>
         </TableCell>
         <TableCell>
-          <TableHeaderLabel>Machine type</TableHeaderLabel>
+          <TableHeaderLabel>Notes</TableHeaderLabel>
         </TableCell>
       </TableRow>
     </TableHead>
@@ -27,7 +27,7 @@ const TableHeader = () => {
 };
 
 TableHeader.propTypes = {
-  handleSort: PropTypes.func.isRequired,
+  handleSort: PropTypes.func,
 };
 
 export default TableHeader;

@@ -24,7 +24,7 @@ export const Wrapper = styled.div<{
   border-bottom: ${({ border = true, theme }) =>
     border ? `1px solid ${theme.colors.iron}` : '0 '};
 
-  margin: 5px;
+  box-shadow: 1px 1px 2px #aaa;
 
   ${({ formSection, collapsed }) => {
     return formSection
@@ -34,8 +34,8 @@ export const Wrapper = styled.div<{
           min-height: 0;
         `
       : css`
-          margin-bottom: 30px;
-          padding-bottom: ${collapsed ? '0' : '20px'};
+          // margin-bottom: 30px;
+          // padding-bottom: ${collapsed ? '0' : '20px'};
         `;
   }};
 `;
@@ -64,9 +64,9 @@ export const AlertWrapper = styled.div<{
 export const Title = styled.div<{ subtitle?: boolean }>`
   font-size: 22px;
   line-height: 22px;
-  padding: 20px 15px ${props => (props.subtitle ? '12px' : '20px')} 0;
+  padding: 20px 15px ${props => (props.subtitle ? '12px' : '0')} 0;
   font-weight: 400;
-  color: ${props => props.theme.palette.primary.main};
+  color: ${props => props.theme.colors.offBlack};
   display: flex;
 `;
 

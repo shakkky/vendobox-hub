@@ -97,7 +97,7 @@ const LineGraph = ({ visits }: { visits: unknown[] }) => {
   const { ref, width } = useContainerSize();
   return (
     <Wrapper ref={ref}>
-      <LineChart height={200} width={width} data={visits}>
+      <LineChart height={200} width={width - 20} data={visits}>
         <Line
           dataKey="count"
           stroke="#8884d8"

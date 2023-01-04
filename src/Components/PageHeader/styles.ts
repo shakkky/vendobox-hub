@@ -10,7 +10,6 @@ const PageHeaderWrapper = styled.div<{ subHeading?: unknown }>`
   padding-right: 40px;
 
   border-radius: 10px;
-  margin: 5px;
 
   button {
     outline: none;
@@ -59,12 +58,12 @@ const TitleWrapper = styled.span`
   display: flex;
 `;
 
-const SubHeading = styled.div<{ noPad?: boolean }>`
+const SubHeading = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-  padding-top: ${p => (p.noPad ? '0px' : '12px')};
+  padding-top: 12px;
 `;
 
 const Children = styled(Row)`
