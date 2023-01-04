@@ -65,6 +65,7 @@ type RowProps = {
   strikeThrough?: boolean;
   flagged?: boolean;
   dimmed?: boolean;
+  noBorder?: boolean;
 } & Partial<TableRowProps>;
 
 // &:nth-child(odd) {
@@ -80,13 +81,13 @@ const TableRow = styled(MuiTableRow)<RowProps>`
   height: ${p => (p.compact ? '20px' : '68px')} !important;
   max-height: ${p => (p.compact ? '20px' : '68px')} !important;
 
-  border-bottom: 1px solid lightgrey;
+  border-bottom: ${p => (p.noBorder ? 'none' : '1px solid lightgrey')};
 
   ${({ compact }) => {
     if (compact) {
       return css`
         td {
-          padding: 15px 10px 15px 10px !important;
+          padding: 10px !important;
           min-height: 80px !important;
         }
       `;

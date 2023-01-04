@@ -14,6 +14,7 @@ export {
   CardHeader,
 } from './Card';
 export { default as ContactItem } from './ContactItem';
+export { default as Drawer } from './Drawer';
 export {
   Input,
   Checkbox,

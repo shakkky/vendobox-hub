@@ -18,7 +18,15 @@ const QUERY_LEADS = gql`
         id
         name
         company_name
+        est_traffic
+        machine_type
         notes
+        status {
+          code
+          label
+        }
+        interaction_key
+        created_at
       }
     }
   }
