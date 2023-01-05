@@ -14,7 +14,13 @@ import { APIErrorReset } from 'app-context';
 import { getUserSession } from './helper';
 import { withLayout } from './Layout';
 
-import { Login, NotFound, Dashboard, Leads } from './route-components';
+import {
+  Login,
+  NotFound,
+  Dashboard,
+  Leads,
+  Locations,
+} from './route-components';
 
 type Props = { [x: string]: unknown };
 
@@ -124,9 +130,9 @@ const Routes = () => (
 
         <AuthRoute exact path="/" component={Dashboard} />
         <AuthRoute exact path="/leads" component={Leads} />
+        <AuthRoute exact path="/locations" component={Locations} />
 
-        {/* <AuthRoute exact path="/resumes" component={Resumes} />
-        <AuthRoute exact path="/users" component={Users} /> */}
+        {/* <AuthRoute exact path="/users" component={Users} /> */}
 
         <AuthRoute component={NotFound} />
       </Switch>

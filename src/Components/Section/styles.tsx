@@ -24,7 +24,7 @@ export const Wrapper = styled.div<{
   border-bottom: ${({ border = true, theme }) =>
     border ? `1px solid ${theme.colors.iron}` : '0 '};
 
-  box-shadow: 1px 1px 2px #aaa;
+  box-shadow: ${p => (p.transparent ? 'none' : '1px 1px 2px #aaa')};
 
   ${({ formSection, collapsed }) => {
     return formSection

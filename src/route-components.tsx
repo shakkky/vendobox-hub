@@ -24,3 +24,4 @@ export const NotFound = LoadComponent(() => import('./Pages/NotFound'));
 
 export const Dashboard = LoadComponent(() => import('./Pages/Dashboard'));
 export const Leads = LoadComponent(() => import('./Pages/Leads'));
+export const Locations = LoadComponent(() => import('./Pages/Locations'));
