@@ -29,19 +29,6 @@ type Location = {
   };
 };
 
-/**
- * ---Header
- * $$ earned over the last week
- *
- * -- Body
- * Name
- * Address
- *
- * ----Footer
- * Amount of money earned all-time
- * person restocking the machines at this location next
- */
-
 const Wrapper = styled.div`
   font-weight: lighter;
   background-color: white;

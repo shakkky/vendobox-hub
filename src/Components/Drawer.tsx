@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
-const Wrapper = styled.span`
-  white-space: nowrap;
-  width: auto;
-`;
+import IconButton from '@mui/material/IconButton';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 const TemporaryDrawer = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
@@ -19,15 +14,18 @@ const TemporaryDrawer = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Wrapper role="button" tabIndex={-1} onClick={() => toggleDrawer(true)}>
-        <MoreHorizIcon />
-      </Wrapper>
+      <IconButton
+        aria-label="more"
+        id="long-button"
+        aria-controls={open ? 'long-menu' : undefined}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
+        onClick={() => toggleDrawer(true)}
+      >
+        <NavigateNextIcon />
+      </IconButton>
       <Drawer anchor="right" open={open} onClose={() => toggleDrawer(false)}>
-        <Box
-          role="presentation"
-          onClick={() => toggleDrawer(false)}
-          onKeyDown={() => toggleDrawer(false)}
-        >
+        <Box role="presentation" onKeyDown={() => toggleDrawer(false)}>
           {children}
         </Box>
       </Drawer>

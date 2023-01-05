@@ -42,6 +42,13 @@ const AddNew = styled.div`
   padding: 20px;
 
   cursor: pointer;
+
+  transition: padding 0.2s ease-in, font-size 0.2s;
+
+  &:hover {
+    padding: 15px;
+    font-size: 1rem;
+  }
 `;
 
 const AddInner = styled.div`
@@ -49,7 +56,6 @@ const AddInner = styled.div`
   width: 100%;
   border: 3px dashed grey;
   text-align: center;
-  // background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23333' opacity='0.5' stroke-width='4' stroke-dasharray='21%2c12' stroke-dashoffset='46' stroke-linecap='butt'/%3e%3c/svg%3e");
   border-radius: 5px;
 
   display: flex;
