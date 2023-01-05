@@ -2,7 +2,8 @@ import React from 'react';
 // import { gql, useQuery } from '@apollo/client';
 import PageHeader from 'Components/PageHeader';
 import { PageWrapper } from 'Components/Page';
-import TableRowData from './Components/Table/Row';
+import LocationCard from './LocationCard';
+import { Icon } from 'Components';
 import { Grid } from '@mui/material';
 
 import styled from 'styled-components';
@@ -36,19 +37,24 @@ const AddNew = styled.div`
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 
   padding: 20px;
+
+  cursor: pointer;
 `;
 
 const AddInner = styled.div`
   height: 100%;
   width: 100%;
-  // border: 3px dashed lightgrey;
+  border: 3px dashed grey;
   text-align: center;
-  padding: 40px;
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23333' opacity='0.5' stroke-width='4' stroke-dasharray='21%2c12' stroke-dashoffset='46' stroke-linecap='butt'/%3e%3c/svg%3e");
+  // background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='5' ry='5' stroke='%23333' opacity='0.5' stroke-width='4' stroke-dasharray='21%2c12' stroke-dashoffset='46' stroke-linecap='butt'/%3e%3c/svg%3e");
   border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Locations = () => {
@@ -71,6 +77,18 @@ const Locations = () => {
         suburb: 'West Ryde',
         state: 'NSW',
       },
+      address_slug: '12 Hermitage St, West Ryde, NSW',
+      revenue: 123456,
+      total_revenue: 567299,
+      next_restock: {
+        // this location could be on many routes.. e.g. shak fortnightly wednesday route, jason fortnightly
+        operator: {
+          first_name: 'Shakeel',
+          last_name: 'Mohammed',
+          photo:
+            'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/d4621ba6-5bf3-4ea7-a627-7c2dfa9fd5c0.png',
+        },
+      },
       machines: [{ id: 1 }, { id: 2 }],
     },
     {
@@ -87,6 +105,18 @@ const Locations = () => {
         street_type: 'st',
         suburb: 'West Ryde',
         state: 'NSW',
+      },
+      address_slug: '12 Hermitage St, West Ryde, NSW',
+      revenue: 123456,
+      total_revenue: 567299,
+      next_restock: {
+        // this location could be on many routes.. e.g. shak fortnightly wednesday route, jason fortnightly
+        operator: {
+          first_name: 'Shakeel',
+          last_name: 'Mohammed',
+          photo:
+            'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/d4621ba6-5bf3-4ea7-a627-7c2dfa9fd5c0.png',
+        },
       },
       machines: [{ id: 1 }, { id: 2 }],
     },
@@ -105,22 +135,17 @@ const Locations = () => {
         suburb: 'West Ryde',
         state: 'NSW',
       },
-      machines: [{ id: 1 }, { id: 2 }],
-    },
-    {
-      id: 4,
-      name: 'Douglass Partners4',
-      contact_name: 'Leanne',
-      contact_phone: '0000000000',
-      contact_email: 'l@dp.com.au',
-      photo:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/d4621ba6-5bf3-4ea7-a627-7c2dfa9fd5c0.png',
-      address: {
-        street_number: 12,
-        street_name: 'hermitage',
-        street_type: 'st',
-        suburb: 'West Ryde',
-        state: 'NSW',
+      address_slug: '12 Hermitage St, West Ryde, NSW',
+      revenue: 123456,
+      total_revenue: 567299,
+      next_restock: {
+        // this location could be on many routes.. e.g. shak fortnightly wednesday route, jason fortnightly
+        operator: {
+          first_name: 'Shakeel',
+          last_name: 'Mohammed',
+          photo:
+            'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/d4621ba6-5bf3-4ea7-a627-7c2dfa9fd5c0.png',
+        },
       },
       machines: [{ id: 1 }, { id: 2 }],
     },
@@ -138,13 +163,18 @@ const Locations = () => {
             {locations.map(l => {
               return (
                 <Grid item xs={12} sm={4} md={3} key={l.id}>
-                  <TableRowData location={l} />
+                  <LocationCard location={l} />
                 </Grid>
               );
             })}
             <Grid item xs={12} sm={4} md={3}>
               <AddNew>
-                <AddInner>Add new</AddInner>
+                <AddInner>
+                  <div>
+                    <Icon type="add" />
+                    Add new
+                  </div>
+                </AddInner>
               </AddNew>
             </Grid>
           </Grid>

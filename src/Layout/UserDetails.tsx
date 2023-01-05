@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import Icon from '../Components/Icon';
-
 import Avatar from 'Components/Avatar';
 
 function UserDetails({
