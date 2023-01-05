@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { queryLeads_leads_leads } from 'schema/queryLeads';
 
 const Wrapper = styled.div`
-  font-size: 1rem;
   font-weight: lighter;
   color: ${p => p.theme.colors.offBlack};
 `;

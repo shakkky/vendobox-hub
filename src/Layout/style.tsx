@@ -107,10 +107,10 @@ const LogoCopy = styled.div`
 
 const Content = styled.main`
   padding-left: 17rem;
-  padding-right 0.5rem;
-  padding-top: 0.5rem;
+  padding-right 1.5rem;
+  padding-top: 1rem;
   @media (max-width: 1440px) {
-    padding-left: 13rem;
+    padding-left: 14rem;
   }
   flex-grow: 1;
   min-height: 100vh;
@@ -118,7 +118,7 @@ const Content = styled.main`
   background-color: ${props => props.theme.colors.offWhite};
 
   @media (max-width: 959px) {
-    padding-left: 0.5rem;
+    padding-left: 1.5rem;
   }
 `;
 
