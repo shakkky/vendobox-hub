@@ -10,14 +10,13 @@ import Section, { SectionContainer } from 'Components/Section';
 // import TableHeader from './Components/Table/Header';
 import { Grid } from '@mui/material';
 
-// import useMediaQuery from 'hooks/useMediaQuery';
-// import { breakpoints } from 'styles/mui-theme';
-import { round } from 'lodash';
 import styled from 'styled-components';
 import IconButton from '@mui/material/IconButton';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 // import EditIcon from '@mui/icons-material/Edit';
+
+import MachineItem from './Components/MachineItem';
 
 // import { queryLeads_leads_leads } from 'schema/queryLeads';
 
@@ -49,27 +48,15 @@ const MachineWrapper = styled.div`
   border-radius: 8px;
   color: ${p => p.theme.colors.offBlack};
 
-  box-shadow: 1px 1px 2px #aaa;
-
   display: flex;
   flex-direction: column;
 
-  // background-image: url(https://cdn-dev.vendobox.com.au/static/images/fas900-machine.png);
-
   height: 100%;
-
   padding: 20px;
-
   overflow: auto;
+
+  box-shadow: 1px 1px 2px #aaa;
 `;
-
-// &:not:first-child {
-//   border-left: 1px solid lightgrey;
-// }
-
-// &:first-child {
-//   border-left: 1px solid lightgrey;
-// }
 
 const Shelf = styled.div`
   width: 100%;
@@ -78,85 +65,8 @@ const Shelf = styled.div`
   justify-content: space-around;
 `;
 
-// &:last-of-type {
-//   border-right: none;
-// }
-
-// &:first-of-type {
-//   border-left: none;
-// }
-
-const Coil = styled.div`
-  height: 100%;
-  width: 100%;
-
-  border: 0.5px solid lightgrey;
-
-  display: flex;
-  flex-direction: column;
-
-  text-align: center;
-
-  overflow: auto;
-
-  cursor: pointer;
-
-  padding: 12px;
-
-  align-items: center;
-
-  &:active:hover {
-    background-color: ${p => p.theme.colors.jade};
-  }
-`;
-
-const ProductWrapper = styled.div`
-  font-weight: lighter;
-  background-color: white;
-  border-radius: 4px;
-  border: 1px solid lightgrey;
-  color: ${p => p.theme.colors.offBlack};
-
-  display: flex;
-  flex-direction: column;
-
-  text-align: center;
-
-  overflow: auto;
-
-  cursor: pointer;
-
-  padding: 12px;
-
-  align-items: center;
-
-  &:hover {
-    box-shadow: 2px 2px 4px #aaa;
-  }
-`;
-
 const MarginTop = styled.div`
   margin-top: 6px;
-`;
-
-const Small = styled.p`
-  font-size: 0.6rem;
-  margin-bottom: 0.2rem;
-`;
-
-const VerySmall = styled.p`
-  font-size: 0.5rem;
-  margin-bottom: unset;
-`;
-
-const CoilLabel = styled.div`
-  border-radius: 25px;
-  background-color: black;
-  color: white;
-  padding: 2px 12px;
-
-  font-size: 0.6rem;
-  font-weight: 600;
 `;
 
 const Actions = styled.div`
@@ -175,9 +85,14 @@ const Actions = styled.div`
   box-shadow: -4px -4px 100px 10px rgba(0, 0, 0, 0.1);
 `;
 
-const Icon = styled(IconButton)<{ fontColor?: string }>`
+const RedIcon = styled(IconButton)`
   padding: 6px;
-  color: ${p => p.fontColor} !important;
+  color: red !important;
+`;
+
+const GreenIcon = styled(IconButton)`
+  padding: 6px;
+  color: green !important;
 `;
 
 const assignedPlanogram = {
@@ -971,8 +886,8 @@ const Planogram = () => {
   const products = [
     {
       id: 1,
-      title: 'Red Rock Deli',
-      label: 'Sweet Chilli & Sour Cream',
+      title: 'Sweet Chilli & Sour Cream',
+      label: 'Red Rock Deli',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/58c68a0f-f6ef-4b6b-b4a0-f10a3d874e09.png',
       default_price: 180,
@@ -980,8 +895,8 @@ const Planogram = () => {
     },
     {
       id: 2,
-      title: 'Suntory',
-      label: 'BOSS - Iced Latte',
+      title: 'BOSS - Iced Latte',
+      label: 'Suntory',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/afe240bf-bf3d-4259-9a8e-70d85ca6dd9c.png',
       default_price: 180,
@@ -989,8 +904,8 @@ const Planogram = () => {
     },
     {
       id: 3,
-      title: 'Suntory',
-      label: 'BOSS - Iced Long Black',
+      title: 'BOSS - Iced Long Black',
+      label: 'Suntory',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/262660dd-bd5d-456f-b0cb-7c058629bc7b.png',
       default_price: 180,
@@ -998,8 +913,8 @@ const Planogram = () => {
     },
     {
       id: 4,
-      title: 'Red Rock Deli',
-      label: 'Sweet Chilli & Sour Cream',
+      title: 'Sweet Chilli & Sour Cream',
+      label: 'Red Rock Deli',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/58c68a0f-f6ef-4b6b-b4a0-f10a3d874e09.png',
       default_price: 180,
@@ -1007,8 +922,8 @@ const Planogram = () => {
     },
     {
       id: 5,
-      title: 'Suntory',
-      label: 'BOSS - Iced Latte',
+      title: 'BOSS - Iced Latte',
+      label: 'Suntory',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/afe240bf-bf3d-4259-9a8e-70d85ca6dd9c.png',
       default_price: 180,
@@ -1016,8 +931,8 @@ const Planogram = () => {
     },
     {
       id: 6,
-      title: 'Suntory',
-      label: 'BOSS - Iced Long Black',
+      title: 'BOSS - Iced Long Black',
+      label: 'Suntory',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/262660dd-bd5d-456f-b0cb-7c058629bc7b.png',
       default_price: 180,
@@ -1025,8 +940,8 @@ const Planogram = () => {
     },
     {
       id: 7,
-      title: 'Red Rock Deli',
-      label: 'Sweet Chilli & Sour Cream',
+      title: 'Sweet Chilli & Sour Cream',
+      label: 'Red Rock Deli',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/58c68a0f-f6ef-4b6b-b4a0-f10a3d874e09.png',
       default_price: 180,
@@ -1034,8 +949,8 @@ const Planogram = () => {
     },
     {
       id: 8,
-      title: 'Suntory',
-      label: 'BOSS - Iced Latte',
+      title: 'BOSS - Iced Latte',
+      label: 'Suntory',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/afe240bf-bf3d-4259-9a8e-70d85ca6dd9c.png',
       default_price: 180,
@@ -1043,8 +958,8 @@ const Planogram = () => {
     },
     {
       id: 9,
-      title: 'Suntory',
-      label: 'BOSS - Iced Long Black',
+      title: 'BOSS - Iced Long Black',
+      label: 'Suntory',
       image_url:
         'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/262660dd-bd5d-456f-b0cb-7c058629bc7b.png',
       default_price: 180,
@@ -1052,30 +967,12 @@ const Planogram = () => {
     },
   ];
 
-  const EmptyItem = ({
-    coil_no,
-    onDragEnter,
-  }: {
-    coil_no: number;
-    onDragEnter: () => void;
-  }) => (
-    <Coil draggable onDragEnter={onDragEnter}>
-      <CoilLabel>{coil_no}</CoilLabel>
-      <MarginTop>
-        <Small style={{ color: 'red' }}>
-          <b>EMPTY</b>
-        </Small>
-      </MarginTop>
-    </Coil>
-  );
-
   const {
     place,
     location: { name },
   } = machine;
 
   // const loading = false;
-  // const isMobile = useMediaQuery(breakpoints.phone);
 
   const dragItem = useRef<number>();
   const dragOverItem = useRef<{
@@ -1090,8 +987,14 @@ const Planogram = () => {
 
   const [workingPlanogram, setWorkingPlanogram] = useState(defaultPlanogram);
 
-  // it will always start from the inventory..
-  // this will always be just an index
+  const [highlightedItem, setHighlightItem] = useState<{
+    shelfNumber?: number | null;
+    coilNumber?: number | null;
+  }>({
+    shelfNumber: null,
+    coilNumber: null,
+  });
+
   const dragStart = (index: number) => {
     dragItem.current = index;
   };
@@ -1101,6 +1004,10 @@ const Planogram = () => {
       shelfNumber,
       coilNumber,
     };
+    setHighlightItem({
+      shelfNumber,
+      coilNumber,
+    });
   };
 
   const getFormattedContent = (
@@ -1129,26 +1036,16 @@ const Planogram = () => {
   };
 
   const drop = () => {
-    console.log('dropped');
-    if (!dragItem.current) return;
+    if (dragItem.current === undefined) return;
 
-    console.log('i got here');
     const { shelfNumber, coilNumber } = dragOverItem.current;
-    console.log({
-      shelfNumber,
-      coilNumber,
-    });
     if (shelfNumber === undefined || coilNumber === undefined) return;
     if (shelfNumber === null || coilNumber === null) return;
-
-    console.log('i got here 1');
 
     const tempPlanogram = { ...workingPlanogram };
     const dragItemContent = products[dragItem.current];
 
-    console.log('shelf number: ', shelfNumber);
     const targetShelf = tempPlanogram.shelves[shelfNumber];
-    console.log({ targetShelf });
 
     const targetCoil = targetShelf.coils[coilNumber];
     const formattedContent = getFormattedContent(
@@ -1156,7 +1053,6 @@ const Planogram = () => {
       targetCoil.coil_no,
       dragItemContent
     );
-    console.log({ formattedContent });
 
     targetShelf.coils.splice(coilNumber, 1);
     targetShelf.coils.splice(coilNumber, 0, formattedContent);
@@ -1169,8 +1065,19 @@ const Planogram = () => {
       shelfNumber: null,
       coilNumber: null,
     };
+    setHighlightItem({
+      shelfNumber: null,
+      coilNumber: null,
+    });
 
     setWorkingPlanogram(tempPlanogram);
+  };
+
+  const shouldHighlight = (shelfNumber: number, coilNumber: number) => {
+    return (
+      highlightedItem.coilNumber === coilNumber &&
+      highlightedItem.shelfNumber === shelfNumber
+    );
   };
 
   return (
@@ -1190,34 +1097,36 @@ const Planogram = () => {
                 <Shelf key={shelfIndex}>
                   {s.coils.map((c, coilIndex) => {
                     return (
-                      <React.Fragment key={coilIndex}>
-                        {!!c.product ? (
-                          <Coil
-                            draggable
-                            onDragEnter={() => dragEnter(shelfIndex, coilIndex)}
-                          >
-                            <CoilLabel>{c.coil_no}</CoilLabel>
-                            <img
-                              src={c.product.image_url}
-                              alt={c.product.label}
-                              height={100}
-                              width={100}
-                            />
-                            <MarginTop>
-                              <Small>{c.product.title}</Small>
-                            </MarginTop>
-                            <VerySmall>
-                              <b>{c.product.label}</b>
-                            </VerySmall>
-                            ${round(c.product.default_price, 2) / 100}
-                          </Coil>
-                        ) : (
-                          <EmptyItem
-                            coil_no={c.coil_no}
-                            onDragEnter={() => dragEnter(shelfIndex, coilIndex)}
-                          />
-                        )}
-                      </React.Fragment>
+                      <div
+                        draggable
+                        onDragOver={e => {
+                          e.preventDefault();
+                        }}
+                        onDragEnter={() => dragEnter(shelfIndex, coilIndex)}
+                        onDragLeave={(e: React.DragEvent<HTMLDivElement>) => {
+                          if (e.currentTarget.contains(e.relatedTarget as Node))
+                            return;
+                          dragOverItem.current = {
+                            shelfNumber: null,
+                            coilNumber: null,
+                          };
+                          setHighlightItem({
+                            shelfNumber: null,
+                            coilNumber: null,
+                          });
+                        }}
+                        onDrop={drop}
+                        style={{
+                          width: '100%',
+                          overflow: 'auto',
+                        }}
+                        key={coilIndex}
+                      >
+                        <MachineItem
+                          highlight={shouldHighlight(shelfIndex, coilIndex)}
+                          coil={c}
+                        />
+                      </div>
                     );
                   })}
                 </Shelf>
@@ -1240,22 +1149,13 @@ const Planogram = () => {
                         key={index}
                         draggable
                         onDragStart={() => dragStart(index)}
-                        onDragEnd={drop}
                       >
-                        <ProductWrapper>
-                          <img
-                            src={p.image_url}
-                            alt={p.label}
-                            height={50}
-                            width={50}
-                          />
-                          <MarginTop>
-                            <Small>{p.label}</Small>
-                          </MarginTop>
-                          <VerySmall>
-                            <b>{p.title}</b>
-                          </VerySmall>
-                        </ProductWrapper>
+                        <MachineItem
+                          image_size={50}
+                          coil={{
+                            product: p,
+                          }}
+                        />
                       </Grid>
                     );
                   })}
@@ -1267,22 +1167,16 @@ const Planogram = () => {
       </Grid>
 
       <Actions>
-        <Icon
+        <RedIcon
           aria-label="clear"
           id="long-button"
           onClick={() => setWorkingPlanogram(defaultPlanogram)}
-          fontColor="red"
         >
           <ClearIcon />
-        </Icon>
-        <Icon
-          aria-label="done"
-          id="long-button"
-          onClick={() => null}
-          fontColor="green"
-        >
+        </RedIcon>
+        <GreenIcon aria-label="done" id="long-button" onClick={() => null}>
           <DoneIcon />
-        </Icon>
+        </GreenIcon>
       </Actions>
     </PageWrapper>
   );
