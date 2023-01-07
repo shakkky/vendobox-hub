@@ -10,8 +10,8 @@ import Section, { SectionContainer } from 'Components/Section';
 // import TableHeader from './Components/Table/Header';
 import { Grid } from '@mui/material';
 
-import useMediaQuery from 'hooks/useMediaQuery';
-import { breakpoints } from 'styles/mui-theme';
+// import useMediaQuery from 'hooks/useMediaQuery';
+// import { breakpoints } from 'styles/mui-theme';
 import { round } from 'lodash';
 import styled from 'styled-components';
 import IconButton from '@mui/material/IconButton';
