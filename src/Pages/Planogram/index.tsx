@@ -1057,7 +1057,7 @@ const Planogram = () => {
     onDragEnter,
   }: {
     coil_no: number;
-    onDragEnter: (e: any) => void;
+    onDragEnter: () => void;
   }) => (
     <Coil draggable onDragEnter={onDragEnter}>
       <CoilLabel>{coil_no}</CoilLabel>
@@ -1074,8 +1074,8 @@ const Planogram = () => {
     location: { name },
   } = machine;
 
-  const loading = false;
-  const isMobile = useMediaQuery(breakpoints.phone);
+  // const loading = false;
+  // const isMobile = useMediaQuery(breakpoints.phone);
 
   const dragItem = useRef<number>();
   const dragOverItem = useRef<{
@@ -1092,23 +1092,27 @@ const Planogram = () => {
 
   // it will always start from the inventory..
   // this will always be just an index
-  const dragStart = (e: any, index: number) => {
+  const dragStart = (index: number) => {
     dragItem.current = index;
-    console.log(e.target.innerHTML);
   };
 
-  const dragEnter = (e: any, shelfNumber: number, coilNumber: number) => {
+  const dragEnter = (shelfNumber: number, coilNumber: number) => {
     dragOverItem.current = {
       shelfNumber,
       coilNumber,
     };
-    console.log(e.target.innerHTML);
   };
 
   const getFormattedContent = (
     id: number,
     coilNumber: number,
-    dragItemContent: any
+    dragItemContent: {
+      title: string;
+      label: string;
+      image_url: string;
+      default_price: number;
+      cost: number;
+    }
   ) => {
     return {
       id: id,
@@ -1124,7 +1128,7 @@ const Planogram = () => {
     };
   };
 
-  const drop = (e: any) => {
+  const drop = () => {
     console.log('dropped');
     if (!dragItem.current) return;
 
@@ -1190,9 +1194,7 @@ const Planogram = () => {
                         {!!c.product ? (
                           <Coil
                             draggable
-                            onDragEnter={e =>
-                              dragEnter(e, shelfIndex, coilIndex)
-                            }
+                            onDragEnter={() => dragEnter(shelfIndex, coilIndex)}
                           >
                             <CoilLabel>{c.coil_no}</CoilLabel>
                             <img
@@ -1212,9 +1214,7 @@ const Planogram = () => {
                         ) : (
                           <EmptyItem
                             coil_no={c.coil_no}
-                            onDragEnter={(e: any) =>
-                              dragEnter(e, shelfIndex, coilIndex)
-                            }
+                            onDragEnter={() => dragEnter(shelfIndex, coilIndex)}
                           />
                         )}
                       </React.Fragment>
@@ -1239,7 +1239,7 @@ const Planogram = () => {
                         sm={4}
                         key={index}
                         draggable
-                        onDragStart={e => dragStart(e, index)}
+                        onDragStart={() => dragStart(index)}
                         onDragEnd={drop}
                       >
                         <ProductWrapper>
