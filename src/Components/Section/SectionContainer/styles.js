@@ -4,7 +4,12 @@ const Wrapper = styled.div`
   display: ${props => (props.displayBlock ? 'block' : 'flex')};
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding: ${props => (props.fullWidth === true ? '0' : '0 20px 20px 40px')};
+  padding: ${props =>
+    props.fullWidth === true
+      ? '0'
+      : !!props.noPad
+      ? '0 20px 20px 20px'
+      : '0 20px 20px 40px'};
   flex-direction: ${props => (props.column ? 'column' : 'row')};
   overflow: ${props => (props.scrollable ? 'auto' : 'unset')};
 

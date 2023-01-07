@@ -55,10 +55,12 @@ const Machines = () => {
         label: 'online',
       },
       warning: null,
-      operator: {
-        first_name: 'Mansoor',
-        last_name: 'Hussein',
-        photo: '',
+      next_restock: {
+        operator: {
+          first_name: 'Mansoor',
+          last_name: 'Hussein',
+          photo: '',
+        },
       },
       revenue: {
         today: 10268,
@@ -79,10 +81,12 @@ const Machines = () => {
         label: 'online',
       },
       warning: null,
-      operator: {
-        first_name: 'Sheena',
-        last_name: 'Raj',
-        photo: '',
+      next_restock: {
+        operator: {
+          first_name: 'Sheena',
+          last_name: 'Raj',
+          photo: '',
+        },
       },
       revenue: {
         today: 1100,
@@ -103,10 +107,12 @@ const Machines = () => {
         label: 'offline',
       },
       warning: 'Device lost connection',
-      operator: {
-        first_name: 'Jason',
-        last_name: 'Vithoulkas',
-        photo: '',
+      next_restock: {
+        operator: {
+          first_name: 'Jason',
+          last_name: 'Vithoulkas',
+          photo: '',
+        },
       },
       revenue: {
         today: 3314,

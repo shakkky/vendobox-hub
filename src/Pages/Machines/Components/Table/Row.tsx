@@ -44,10 +44,12 @@ type Machine = {
     label: string;
   };
   warning?: string | null;
-  operator: {
-    first_name: string;
-    last_name: string;
-    photo: string;
+  next_restock: {
+    operator: {
+      first_name: string;
+      last_name: string;
+      photo: string;
+    };
   };
   revenue: {
     today: number;
@@ -197,7 +199,8 @@ const TableRowBody = ({
   machine: Machine;
   isMobileLayout: boolean;
 }) => {
-  const { location, place, status, warning, operator, revenue } = machine;
+  const { location, place, status, warning, next_restock, revenue } = machine;
+  const { operator } = next_restock ?? {};
 
   return (
     <TableRow>
