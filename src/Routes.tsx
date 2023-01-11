@@ -21,7 +21,8 @@ import {
   Leads,
   Locations,
   Machines,
-  Planogram,
+  Machine,
+  Restock,
 } from './route-components';
 
 type Props = { [x: string]: unknown };
@@ -134,8 +135,9 @@ const Routes = () => (
         <AuthRoute exact path="/leads" component={Leads} />
         <AuthRoute exact path="/locations" component={Locations} />
         <AuthRoute exact path="/machines" component={Machines} />
+        <AuthRoute exact path="/machines/:id" component={Machine} />
 
-        <AuthRoute exact path="/planogram/:id" component={Planogram} />
+        <AuthRoute exact path="/restocks/:id" component={Restock} />
 
         {/* <AuthRoute exact path="/users" component={Users} /> */}
 

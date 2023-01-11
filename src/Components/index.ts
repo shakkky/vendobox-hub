@@ -44,6 +44,7 @@ export {
   SectionParagraph,
 } from './Section';
 export { default as StatusBadge } from './StatusBadge';
+export * from './Stock';
 export {
   default as Table,
   TableBody,

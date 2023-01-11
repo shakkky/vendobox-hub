@@ -17,13 +17,13 @@ const Avatar = ({
   lastName = '',
   photo,
   size,
-  push,
+  push = () => null,
 }: {
   firstName?: Maybe<string>;
   lastName?: Maybe<string>;
   photo?: Maybe<string>;
   size: number;
-  push: (route: string) => void;
+  push?: (route: string) => void;
 }) => {
   const formattedText = useMemo(() => formatName(`${firstName} ${lastName}`), [
     firstName,

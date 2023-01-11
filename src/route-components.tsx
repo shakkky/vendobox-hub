@@ -26,4 +26,5 @@ export const Dashboard = LoadComponent(() => import('./Pages/Dashboard'));
 export const Leads = LoadComponent(() => import('./Pages/Leads'));
 export const Locations = LoadComponent(() => import('./Pages/Locations'));
 export const Machines = LoadComponent(() => import('./Pages/Machines'));
-export const Planogram = LoadComponent(() => import('./Pages/Planogram'));
+export const Machine = LoadComponent(() => import('./Pages/Machine'));
+export const Restock = LoadComponent(() => import('./Pages/Restock'));

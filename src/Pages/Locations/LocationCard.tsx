@@ -2,31 +2,55 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { round } from 'lodash';
+import { queryLocations_locations_locations } from 'schema/queryLocations';
+
 import Avatar from 'Components/Avatar';
 
-type Location = {
-  name: string;
-  photo: string;
-  contact_name: string;
-  contact_phone: string;
-  contact_email: string;
-  address_slug: string;
-  address: {
-    street_number: number;
-    street_name: string;
-    street_type: string;
-    suburb: string;
-    state: string;
-  };
-  revenue: number;
-  total_revenue: number;
-  next_restock: {
-    operator: {
-      first_name: string;
-      last_name: string;
-      photo: string;
-    };
-  };
+const LocationCard = ({
+  location,
+}: {
+  location: queryLocations_locations_locations;
+}) => {
+  const { push } = useHistory();
+  const {
+    seven_day_revenue,
+    address,
+    name,
+    image_url,
+    all_time_revenue,
+    next_restock,
+  } = location;
+  const { google_address } = address ?? {};
+  const { operator } = next_restock ?? {};
+  return (
+    <Wrapper>
+      <Image src={image_url} alt={`${name} company`}></Image>
+      <Content>
+        <Rows>
+          <Revenue>${round(seven_day_revenue ?? 0, 2) / 100}</Revenue>
+          /week
+        </Rows>
+        <MarginTop>
+          <div>
+            <b>{name}</b>
+          </div>
+          <Address>{google_address}</Address>
+        </MarginTop>
+      </Content>
+      <Footer>
+        <MarginTop>${round(all_time_revenue ?? 0, 2) / 100}/total</MarginTop>
+        {operator && (
+          <Avatar
+            firstName={operator.first_name}
+            lastName={operator.last_name}
+            // photo={operator.photo}
+            size={32}
+            push={push}
+          />
+        )}
+      </Footer>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -36,16 +60,11 @@ const Wrapper = styled.div`
   color: ${p => p.theme.colors.offBlack};
 
   box-shadow: 1px 1px 2px #aaa;
-
   display: flex;
   flex-direction: column;
-
   margin: 16px 0;
-
   overflow: auto;
-
   cursor: pointer;
-
   &:hover {
     box-shadow: 2px 2px 4px #aaa;
   }
@@ -81,7 +100,6 @@ const Footer = styled.div`
   padding: 8px 22px;
   font-size: 0.8rem;
   font-weight: 600;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -90,46 +108,6 @@ const Footer = styled.div`
 const MarginTop = styled.div`
   margin-top: 8px;
 `;
-
-const LocationCard = ({ location }: { location: Location }) => {
-  const { push } = useHistory();
-  const {
-    revenue,
-    address_slug,
-    name,
-    photo,
-    total_revenue,
-    next_restock,
-  } = location;
-  const { operator } = next_restock;
-  return (
-    <Wrapper>
-      <Image src={photo} alt={`${name} company`}></Image>
-      <Content>
-        <Rows>
-          <Revenue>${round(revenue, 2) / 100}</Revenue>
-          /week
-        </Rows>
-        <MarginTop>
-          <div>
-            <b>{name}</b>
-          </div>
-          <Address>{address_slug}</Address>
-        </MarginTop>
-      </Content>
-      <Footer>
-        <MarginTop>${round(total_revenue, 2) / 100}/total</MarginTop>
-        <Avatar
-          firstName={operator.first_name}
-          lastName={operator.last_name}
-          photo={operator.photo}
-          size={32}
-          push={push}
-        />
-      </Footer>
-    </Wrapper>
-  );
-};
 
 LocationCard.propTypes = {
   location: PropTypes.object.isRequired,
