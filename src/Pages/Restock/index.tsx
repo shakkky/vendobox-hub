@@ -852,6 +852,8 @@ const machine = {
   },
 };
 
+// TODO: Pull this data from the api
+
 const Restock = () => {
   // const { data = {}, loading = true } = useQuery(QUERY_LEADS);
   // const leads = data?.leads?.leads ?? [];

@@ -12,7 +12,7 @@ import { Viewer } from 'Components/Stock';
 import { formatDate } from 'Utils/index-v2';
 
 const ReStockStatusCodes = {
-  NEW: 10,
+  NEW: 0,
   COMPLETED: 20,
 };
 
