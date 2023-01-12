@@ -1,4 +1,6 @@
 import React from 'react';
+import { queryMachineById_machineById_restocks } from 'schema/queryMachineById';
+
 import Table, { TableBody } from 'Components/Table';
 import { RowLoader } from 'Components/Loader';
 import Header from './Components/Header';
@@ -8,18 +10,7 @@ const Restocks = ({
   data = [],
   loading,
 }: {
-  data: {
-    id: number;
-    created_at: string;
-    status: {
-      code: number;
-      label: string;
-    };
-    operator: {
-      first_name: string;
-      last_name: string;
-    };
-  }[]; // TODO: fix later
+  data: queryMachineById_machineById_restocks[];
   loading?: boolean;
 }) => {
   return (

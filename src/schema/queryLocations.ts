@@ -12,6 +12,12 @@ export interface queryLocations_locations_locations_address {
   google_address: string;
 }
 
+export interface queryLocations_locations_locations_revenue {
+  __typename: "Revenue";
+  week: number | null;
+  all_time: number | null;
+}
+
 export interface queryLocations_locations_locations_next_restock_operator {
   __typename: "User";
   first_name: string | null;
@@ -29,8 +35,7 @@ export interface queryLocations_locations_locations {
   name: string;
   image_url: string;
   address: queryLocations_locations_locations_address | null;
-  seven_day_revenue: number | null;
-  all_time_revenue: number | null;
+  revenue: queryLocations_locations_locations_revenue | null;
   next_restock: queryLocations_locations_locations_next_restock | null;
   created_at: any | null;
 }

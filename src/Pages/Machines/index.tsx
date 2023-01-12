@@ -1,5 +1,10 @@
 import React from 'react';
-// import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import useMediaQuery from 'hooks/useMediaQuery';
+import { breakpoints } from 'styles/mui-theme';
+import { queryMachines_machines_machines } from 'schema/queryMachines';
+
+import { Grid } from '@mui/material';
 import PageHeader from 'Components/PageHeader';
 import { PageWrapper } from 'Components/Page';
 import Section, { SectionContainer } from 'Components/Section';
@@ -8,123 +13,13 @@ import Table, { TableBody } from 'Components/Table';
 import { Button } from 'Components';
 import TableRowData from './Components/Table/Row';
 import TableHeader from './Components/Table/Header';
-import { Grid } from '@mui/material';
 
-import useMediaQuery from 'hooks/useMediaQuery';
-import { breakpoints } from 'styles/mui-theme';
-
-// import { queryLeads_leads_leads } from 'schema/queryLeads';
-
-// const QUERY_LEADS = gql`
-//   query queryLeads {
-//     leads {
-//       leads {
-//         id
-//         name
-//         phone
-//         email
-//         company_name
-//         est_traffic
-//         machine_type
-//         notes
-//         status {
-//           code
-//           label
-//         }
-//         interaction_key
-//         created_at
-//       }
-//     }
-//   }
-// `;
+import { QUERY_MACHINES } from './queries';
 
 const Machines = () => {
-  // const { data = {}, loading = true } = useQuery(QUERY_LEADS);
-  // const leads = data?.leads?.leads ?? [];
+  const { data = {}, loading = true } = useQuery(QUERY_MACHINES);
+  const machines = data?.machines?.machines ?? [];
 
-  const machines = [
-    {
-      id: 1,
-      place: 'Staff room',
-      location: {
-        name: 'Douglass Partners',
-        address_slug: '123 Example Street, Exampleville, 2000',
-      },
-      status: {
-        code: 10,
-        label: 'online',
-      },
-      warning: null,
-      next_restock: {
-        operator: {
-          first_name: 'Mansoor',
-          last_name: 'Hussein',
-          photo: '',
-        },
-      },
-      revenue: {
-        today: 10268,
-        yesterday: 10100,
-        week: 71288,
-        month: 285152,
-        since_restock: 34255,
-      },
-    },
-    {
-      id: 2,
-      location: {
-        name: 'Storage King - Thornleigh',
-        address_slug: '456 Example Street, Exampleville, 2000',
-      },
-      status: {
-        code: 10,
-        label: 'online',
-      },
-      warning: null,
-      next_restock: {
-        operator: {
-          first_name: 'Sheena',
-          last_name: 'Raj',
-          photo: '',
-        },
-      },
-      revenue: {
-        today: 1100,
-        yesterday: 1200,
-        week: 4510,
-        month: 18040,
-        since_restock: 1325,
-      },
-    },
-    {
-      id: 3,
-      location: {
-        name: 'Jax Tyres - Baulkham Hills',
-        address_slug: '789 Example Street, Exampleville, 2000',
-      },
-      status: {
-        code: 20,
-        label: 'offline',
-      },
-      warning: 'Device lost connection',
-      next_restock: {
-        operator: {
-          first_name: 'Jason',
-          last_name: 'Vithoulkas',
-          photo: '',
-        },
-      },
-      revenue: {
-        today: 3314,
-        yesterday: 3270,
-        week: 23050,
-        month: 92200,
-        since_restock: 6725,
-      },
-    },
-  ];
-
-  const loading = false;
   const isMobile = useMediaQuery(breakpoints.phone);
 
   return (
@@ -147,13 +42,15 @@ const Machines = () => {
                   <RowLoader col={5} />
                 ) : (
                   <TableBody>
-                    {machines?.map(machine => (
-                      <TableRowData
-                        key={machine.id}
-                        machine={machine}
-                        isMobileLayout={isMobile}
-                      />
-                    ))}
+                    {machines?.map(
+                      (machine: queryMachines_machines_machines) => (
+                        <TableRowData
+                          key={machine.id}
+                          machine={machine}
+                          isMobileLayout={isMobile}
+                        />
+                      )
+                    )}
                   </TableBody>
                 )}
               </Table>

@@ -10,8 +10,10 @@ const QUERY_LOCATIONS = gql`
         address {
           google_address
         }
-        seven_day_revenue
-        all_time_revenue
+        revenue {
+          week
+          all_time
+        }
         next_restock {
           operator {
             first_name

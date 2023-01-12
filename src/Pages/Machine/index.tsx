@@ -1,5 +1,5 @@
-import React from 'react';
-// import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 import { Grid } from '@mui/material';
 
 import PageHeader from 'Components/PageHeader';
@@ -10,27 +10,23 @@ import Location from './Components/Location';
 import PerformanceGraph from './Components/PerformanceGraph';
 import Restocks from './Components/Restocks';
 
-// const QUERY_DOWNLOAD_REQUESTS = gql`
-//   query queryDownloadRequests {
-//     downloadRequests {
-//       downloadRequests {
-//         id
-//         name
-//         email
-//         is_download_approved
-//         has_accepted_terms_and_conditions
-//         comments
-//         download_link
-//         created_at
-//       }
-//     }
-//   }
-// `;
+import { QUERY_MACHINE } from './queries';
 
 const Machine = () => {
-  // const { data = {}, loading = true, refetch } = useQuery(
-  //   QUERY_DOWNLOAD_REQUESTS
-  // );
+  const { id } = useParams<{ id: string }>();
+  // const { data = {}, loading = true, refetch } = useQuery(QUERY_MACHINE, {
+  //   variables: {
+  //     id,
+  //   },
+  // });
+  const { data = {}, loading = true } = useQuery(QUERY_MACHINE, {
+    variables: {
+      id,
+    },
+  });
+
+  const { place, location, restocks } = data?.machineById ?? {};
+  const { name } = location ?? {};
 
   const performance = [
     { date: 'Feb 10', revenue: 300, products_sold: 67 },
@@ -47,49 +43,8 @@ const Machine = () => {
     { date: 'Feb 21', revenue: 210, products_sold: 49 },
   ];
 
-  const machine = {
-    id: 1,
-    place: 'Staff Room',
-    location: {
-      name: 'Douglass Partners',
-      address_slug: '123 Machine street, NSW',
-      contact_first_name: 'Leanne',
-      contact_last_name: 'Leanne',
-      contact_phone: '0200000000',
-      contact_role: 'Receptionist',
-      notes:
-        'Location prefers re-stock between 1pm - 2pm. Parking is available at front of the building.',
-    },
-    re_stocks: [
-      {
-        id: 1,
-        created_at: '12th January, 2023',
-        status: {
-          code: 10,
-          label: 'created',
-        },
-        operator: {
-          first_name: 'Shakeel',
-          last_name: 'Mohammed',
-        },
-      },
-      {
-        id: 2,
-        created_at: '5th January, 2023',
-        status: {
-          code: 20,
-          label: 'completed',
-        },
-        operator: {
-          first_name: 'Shakeel',
-          last_name: 'Mohammed',
-        },
-      },
-    ],
-  };
-
-  const { place, location, re_stocks } = machine;
-  const { name } = location;
+  // TODO: put a page loader here
+  if (loading) return <></>;
 
   return (
     <PageWrapper title={`${name + (place ? ` - ${place}` : '')}`}>
@@ -137,7 +92,7 @@ const Machine = () => {
         <Grid item xs={12}>
           <Section border={false} title="Re-stocks">
             <SectionContainer>
-              <Restocks data={re_stocks} />
+              <Restocks data={restocks} />
             </SectionContainer>
           </Section>
         </Grid>

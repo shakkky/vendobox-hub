@@ -12,22 +12,16 @@ const LocationCard = ({
   location: queryLocations_locations_locations;
 }) => {
   const { push } = useHistory();
-  const {
-    seven_day_revenue,
-    address,
-    name,
-    image_url,
-    all_time_revenue,
-    next_restock,
-  } = location;
+  const { address, name, image_url, revenue, next_restock } = location;
   const { google_address } = address ?? {};
   const { operator } = next_restock ?? {};
+  const { week, all_time } = revenue ?? {};
   return (
     <Wrapper>
       <Image src={image_url} alt={`${name} company`}></Image>
       <Content>
         <Rows>
-          <Revenue>${round(seven_day_revenue ?? 0, 2) / 100}</Revenue>
+          <Revenue>${round(week ?? 0, 2) / 100}</Revenue>
           /week
         </Rows>
         <MarginTop>
@@ -38,7 +32,7 @@ const LocationCard = ({
         </MarginTop>
       </Content>
       <Footer>
-        <MarginTop>${round(all_time_revenue ?? 0, 2) / 100}/total</MarginTop>
+        <MarginTop>${round(all_time ?? 0, 2) / 100}/total</MarginTop>
         {operator && (
           <Avatar
             firstName={operator.first_name}

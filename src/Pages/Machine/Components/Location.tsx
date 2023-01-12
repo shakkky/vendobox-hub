@@ -1,7 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
+import { queryMachineById_machineById_location } from 'schema/queryMachineById';
+
 import { Grid } from '@mui/material';
 import Avatar from 'Components/Avatar';
+
+const Location = ({
+  location,
+}: {
+  location: queryMachineById_machineById_location;
+}) => {
+  const {
+    name,
+    address,
+    contact_first_name,
+    contact_last_name,
+    contact_role,
+    contact_phone,
+    notes,
+  } = location;
+  const { google_address } = address ?? {};
+  return (
+    <Wrapper>
+      <Grid container spacing={2} columns={12}>
+        <Grid item xs={12} sm={4}>
+          <CardWrapper>
+            <div>
+              <LargeText>{name}</LargeText>
+              <MediumText>{google_address}</MediumText>
+            </div>
+            {contact_first_name && (
+              <ContactWrapper>
+                <Rows>
+                  <MarginRight>
+                    <Avatar
+                      firstName={contact_first_name}
+                      lastName={contact_last_name}
+                      size={46}
+                    />
+                  </MarginRight>
+                  <Columns>
+                    <ContactName>
+                      {contact_first_name ?? ''} {contact_last_name ?? ''}
+                    </ContactName>
+                    <ContactDetail>{contact_role}</ContactDetail>
+                    <ContactDetail>{contact_phone}</ContactDetail>
+                  </Columns>
+                </Rows>
+              </ContactWrapper>
+            )}
+            <Notes>{notes}</Notes>
+          </CardWrapper>
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <Map />
+        </Grid>
+      </Grid>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div``;
 
@@ -63,65 +120,5 @@ const Map = styled.div`
   width: 100%;
   background-color: #fcfcfc;
 `;
-
-const Location = ({
-  location,
-}: {
-  location: {
-    name?: string;
-    address_slug?: string;
-    contact_first_name?: string;
-    contact_last_name?: string;
-    contact_role?: string;
-    contact_phone?: string;
-    notes?: string;
-  };
-}) => {
-  const {
-    name,
-    address_slug,
-    contact_first_name,
-    contact_last_name,
-    contact_role,
-    contact_phone,
-    notes,
-  } = location;
-  return (
-    <Wrapper>
-      <Grid container spacing={2} columns={12}>
-        <Grid item xs={12} sm={4}>
-          <CardWrapper>
-            <div>
-              <LargeText>{name}</LargeText>
-              <MediumText>{address_slug}</MediumText>
-            </div>
-            <ContactWrapper>
-              <Rows>
-                <MarginRight>
-                  <Avatar
-                    firstName={contact_first_name}
-                    lastName={contact_last_name}
-                    size={46}
-                  />
-                </MarginRight>
-                <Columns>
-                  <ContactName>
-                    {contact_first_name} {contact_last_name}
-                  </ContactName>
-                  <ContactDetail>{contact_role}</ContactDetail>
-                  <ContactDetail>{contact_phone}</ContactDetail>
-                </Columns>
-              </Rows>
-            </ContactWrapper>
-            <Notes>{notes}</Notes>
-          </CardWrapper>
-        </Grid>
-        <Grid item xs={12} sm={8}>
-          <Map />
-        </Grid>
-      </Grid>
-    </Wrapper>
-  );
-};
 
 export default Location;
