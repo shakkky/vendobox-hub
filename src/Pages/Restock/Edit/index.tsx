@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-// import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
+
 import PageHeader from 'Components/PageHeader';
 import { PageWrapper } from 'Components/Page';
 // import ReStockPlanner from 'Components/Stock/Tester';
@@ -8,28 +10,42 @@ import { Grid } from '@mui/material';
 
 // import { queryLeads_leads_leads } from 'schema/queryLeads';
 
-// const QUERY_LEADS = gql`
-//   query queryLeads {
-//     leads {
-//       leads {
-//         id
-//         name
-//         phone
-//         email
-//         company_name
-//         est_traffic
-//         machine_type
-//         notes
-//         status {
-//           code
-//           label
-//         }
-//         interaction_key
-//         created_at
-//       }
-//     }
-//   }
-// `;
+const PAGE_QUERY = gql`
+  query queryRestockAndInventory($id: IntID!) {
+    restock(id: $id) {
+      id
+      stock_plan {
+        id
+        shelves {
+          id
+          shelf_no
+          coils {
+            id
+            coil_no
+            product {
+              id
+              title
+              label
+              image_url
+              default_price
+            }
+            price
+          }
+        }
+      }
+    }
+    products {
+      products {
+        id
+        title
+        label
+        image_url
+        default_price
+        cost
+      }
+    }
+  }
+`;
 
 const assignedPlanogram = {
   id: 1,
@@ -855,92 +871,15 @@ const machine = {
 // TODO: Pull this data from the api
 
 const Restock = () => {
-  // const { data = {}, loading = true } = useQuery(QUERY_LEADS);
-  // const leads = data?.leads?.leads ?? [];
-
-  const products = [
-    {
-      id: 1,
-      title: 'Sweet Chilli & Sour Cream',
-      label: 'Red Rock Deli',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/58c68a0f-f6ef-4b6b-b4a0-f10a3d874e09.png',
-      default_price: 180,
-      cost: 100,
+  const { id } = useParams<{ id: string }>();
+  // TODO: add loading spinner
+  // const { data = {}, loading = true } = useQuery(QUERY_PRODUCTS);
+  const { data = {} } = useQuery(PAGE_QUERY, {
+    variables: {
+      id,
     },
-    {
-      id: 2,
-      title: 'BOSS - Iced Latte',
-      label: 'Suntory',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/afe240bf-bf3d-4259-9a8e-70d85ca6dd9c.png',
-      default_price: 180,
-      cost: 100,
-    },
-    {
-      id: 3,
-      title: 'BOSS - Iced Long Black',
-      label: 'Suntory',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/262660dd-bd5d-456f-b0cb-7c058629bc7b.png',
-      default_price: 180,
-      cost: 100,
-    },
-    {
-      id: 4,
-      title: 'Sweet Chilli & Sour Cream',
-      label: 'Red Rock Deli',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/58c68a0f-f6ef-4b6b-b4a0-f10a3d874e09.png',
-      default_price: 180,
-      cost: 100,
-    },
-    {
-      id: 5,
-      title: 'BOSS - Iced Latte',
-      label: 'Suntory',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/afe240bf-bf3d-4259-9a8e-70d85ca6dd9c.png',
-      default_price: 180,
-      cost: 100,
-    },
-    {
-      id: 6,
-      title: 'BOSS - Iced Long Black',
-      label: 'Suntory',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/262660dd-bd5d-456f-b0cb-7c058629bc7b.png',
-      default_price: 180,
-      cost: 100,
-    },
-    {
-      id: 7,
-      title: 'Sweet Chilli & Sour Cream',
-      label: 'Red Rock Deli',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/58c68a0f-f6ef-4b6b-b4a0-f10a3d874e09.png',
-      default_price: 180,
-      cost: 100,
-    },
-    {
-      id: 8,
-      title: 'BOSS - Iced Latte',
-      label: 'Suntory',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/afe240bf-bf3d-4259-9a8e-70d85ca6dd9c.png',
-      default_price: 180,
-      cost: 100,
-    },
-    {
-      id: 9,
-      title: 'BOSS - Iced Long Black',
-      label: 'Suntory',
-      image_url:
-        'https://vendobox-documents.s3.ap-southeast-2.amazonaws.com/local/262660dd-bd5d-456f-b0cb-7c058629bc7b.png',
-      default_price: 180,
-      cost: 100,
-    },
-  ];
+  });
+  const products = data?.products?.products ?? [];
 
   const {
     place,
@@ -948,8 +887,6 @@ const Restock = () => {
     restock: { stock_plan: restockPlan },
     stock_plan: currentPlan,
   } = machine;
-
-  // const loading = false;
 
   return (
     <PageWrapper title={`${name}`}>
@@ -965,6 +902,7 @@ const Restock = () => {
             initial={{ ...restockPlan }}
             currentPlan={currentPlan}
             inventory={products}
+            onSaveCallback={() => null}
           />
         </Grid>
       </Grid>

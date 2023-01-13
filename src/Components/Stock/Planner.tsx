@@ -72,20 +72,20 @@ type Product = {
 };
 
 type MachinePlanCoil = {
-  id: number;
+  id?: number;
   coil_no: number;
   product?: Maybe<Product>;
   price?: Maybe<number>;
 };
 
 type MachinePlanShelf = {
-  id: number;
-  stock_plan_id: number;
+  id?: number;
+  stock_plan_id?: number;
   coils: MachinePlanCoil[];
 };
 
 type ReStockPlan = {
-  id: number;
+  id?: number;
   shelves: MachinePlanShelf[];
 };
 
@@ -93,10 +93,12 @@ const Planner = ({
   initial,
   currentPlan,
   inventory,
+  onSaveCallback = () => null,
 }: {
   initial: ReStockPlan;
   currentPlan: ReStockPlan;
   inventory: Product[];
+  onSaveCallback: (plan: ReStockPlan) => void;
 }) => {
   const dragItem = useRef<number>();
   const dragOverItem = useRef<{
@@ -132,9 +134,13 @@ const Planner = ({
     });
   };
 
-  const getFormattedContent = (
-    id: number,
-    coilNumber: number,
+  const getFormattedContent = ({
+    id,
+    coilNumber,
+    dragItemContent,
+  }: {
+    id?: number;
+    coilNumber: number;
     dragItemContent: {
       id: number;
       title: string;
@@ -142,8 +148,8 @@ const Planner = ({
       image_url: string;
       default_price: number;
       cost: number;
-    }
-  ) => {
+    };
+  }) => {
     return {
       id: id,
       coil_no: coilNumber,
@@ -172,11 +178,11 @@ const Planner = ({
     const targetShelf = tempPlanogram.shelves[shelfNumber];
 
     const targetCoil = targetShelf.coils[coilNumber];
-    const formattedContent = getFormattedContent(
-      targetCoil.id,
-      targetCoil.coil_no,
-      dragItemContent
-    );
+    const formattedContent = getFormattedContent({
+      id: targetCoil.id,
+      coilNumber: targetCoil.coil_no,
+      dragItemContent,
+    });
 
     targetShelf.coils.splice(coilNumber, 1);
     targetShelf.coils.splice(coilNumber, 0, formattedContent);
@@ -298,7 +304,11 @@ const Planner = ({
         >
           <ClearIcon />
         </RedIcon>
-        <GreenIcon aria-label="done" id="long-button" onClick={() => null}>
+        <GreenIcon
+          aria-label="done"
+          id="long-button"
+          onClick={() => onSaveCallback(workingPlanogram)}
+        >
           <DoneIcon />
         </GreenIcon>
       </Actions>

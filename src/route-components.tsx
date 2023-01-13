@@ -27,4 +27,7 @@ export const Leads = LoadComponent(() => import('./Pages/Leads'));
 export const Locations = LoadComponent(() => import('./Pages/Locations'));
 export const Machines = LoadComponent(() => import('./Pages/Machines'));
 export const Machine = LoadComponent(() => import('./Pages/Machine'));
-export const Restock = LoadComponent(() => import('./Pages/Restock'));
+export const EditRestock = LoadComponent(() => import('./Pages/Restock/Edit'));
+export const CreateRestock = LoadComponent(
+  () => import('./Pages/Restock/Create')
+);
